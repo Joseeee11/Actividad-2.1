@@ -13,7 +13,6 @@ class equipoControllers {
       .catch((err) => { 
         reject (err)
       }) 
-    
     })
   };
 

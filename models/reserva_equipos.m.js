@@ -1,9 +1,9 @@
 const connection = require('./conexion');
 
-class reserva_espaciosModel {
+class reserva_equiposModel {
     listar(){
         return new Promise((resolve, reject) => {
-            connection.query('SELECT * FROM `reservas_espacios`', function (error, results, fields) {
+            connection.query('SELECT * FROM `reservas_equipos`', function (error, results, fields) {
                 if (error) throw error;
                 resolve (results);
             })
@@ -11,4 +11,4 @@ class reserva_espaciosModel {
     }
 }
 
-module.exports = new reserva_espaciosModel();
+module.exports = new reserva_equiposModel();

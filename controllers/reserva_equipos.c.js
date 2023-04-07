@@ -1,14 +1,17 @@
-///referencias
-require('uuid')
+const reserva_equiposModel = require("../models/reserva_equipos.m")
 
-const databased = require("../dataBase/dataBase.js")
-
-class usersControllers {
-  // esta funcion muestra los equipos de la base de datos "dataBase"
+class reserva_equiposControllers {
   listar(){
-    console.log('c listar'); // YA ESTA BIEN, NO MODIFICAAAR
-    return databased.database.reserva_equipo;
+    return new Promise((resolve, reject) => {
+      reserva_equiposModel.listar()
+      .then((resultado) => {
+        resolve(resultado)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+    })
   }
 }
 
-module.exports = new usersControllers();
+module.exports = new reserva_equiposControllers();

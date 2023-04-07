@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //importar controladores 
-var solicitantesControllers = require("../controllers/solicitante.c.js")
+var solicitantesControllers = require("../controllers/solicitantes.c.js")
 
 
 router.get('/', function(req, res, next) {

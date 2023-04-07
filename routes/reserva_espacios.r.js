@@ -2,24 +2,20 @@ var express = require('express');
 var router = express.Router();
 
 //importar controladores OJO, NO MODIFICAR
-var equipoControllers = require("../controllers/equipos.c.js")
+var reserva_espaciosControllers = require("../controllers/reserva_espacios.c.js")
 
 
 
 // EL BUENOO, NO MODIFICAR XD
 router.get('/', function(req, res, next) {
-  equipoControllers.listar()
-  .then ((resultado) => {
-    res.send(resultado);
+  reserva_espaciosControllers.listar()
+  .then((resultado) => {
+    res.send(resultado)
   })
-  .catch ((err) => {
+  .catch((err) => {
     res.send(err)
   })
 });
-
-
- 
-
 
 
 module.exports = router;

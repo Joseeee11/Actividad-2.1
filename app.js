@@ -9,6 +9,8 @@ var espaciosRouter = require('./routes/espacios.r');
 var equiposRouter = require('./routes/equipo.r');
 var solicitantesRouter = require('./routes/solicitante.r');
 var personalRouter = require('./routes/personal.r');
+var trabajosRouter = require('./routes/trabajos.r');
+var reserva_espaciosRouter = require('./routes/reserva_espacios.r');
 
 // var reserva_espaciosRouter = require('./routes/reserva_espacios');
 // var reserva_equiposRouter = require('./routes/reserva_equipos');
@@ -29,8 +31,9 @@ app.use('/', indexRouter);
 app.use('/espacios', espaciosRouter);
 app.use('/equipos', equiposRouter);
 app.use('/solicitantes', solicitantesRouter);
-app.use('/personal', personalRouter)
-
+app.use('/personal', personalRouter);
+app.use('/trabajos', trabajosRouter);
+app.use('/reserva_espacios', reserva_espaciosRouter);
 
 
 // app.use('/reserva_espacios', reserva_espaciosRouter);

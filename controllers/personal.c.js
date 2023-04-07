@@ -1,14 +1,17 @@
-///referencias
-require('uuid')
+const personalModel = require("../models/personal.m")
 
-const databased = require("../dataBase/dataBase.js")
-
-class usersControllers {
-  // esta funcion muestra los equipos de la base de datos "dataBase"
+class personalControllers {
   listar(){
-    console.log('c listar'); // YA ESTA BIEN, NO MODIFICAAAR
-    return databased.database.personal;
+    return new Promise((resolve, reject) => {
+      personalModel.listar()
+      .then((resultado) => {
+        resolve(resultado)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+    })
   }
 }
 
-module.exports = new usersControllers();
+module.exports = new personalControllers();

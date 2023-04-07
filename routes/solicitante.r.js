@@ -1,12 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-//importar controladores OJO, NO MODIFICAR
+//importar controladores 
 var solicitantesControllers = require("../controllers/solicitante.c.js")
 
 
-
-// EL BUENOO, NO MODIFICAR XD
 router.get('/', function(req, res, next) {
 
   solicitantesControllers.listar()

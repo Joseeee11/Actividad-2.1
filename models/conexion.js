@@ -12,7 +12,7 @@ connection.connect(function (err) {
         return;
     }
 
-    console.log ('**** CONECTADO CON LA BASE DE DATOS **** ' + connection.threadId);
+    console.log ('CONECTADO CON LA BASE DE DATOS' + connection.threadId);
 });
  
 

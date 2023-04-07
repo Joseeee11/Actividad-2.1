@@ -8,8 +8,18 @@ var equipoControllers = require("../controllers/equipo.c.js")
 
 // EL BUENOO, NO MODIFICAR XD
 router.get('/', function(req, res, next) {
-  res.send(equipoControllers.listar());
+  equipoControllers.listar()
+  .then ((resultado) => {
+    res.send(resultado);
+  })
+  .catch ((err) => {
+    res.send(err)
+  })
 });
+
+
+ 
+
 
 // EL METODO POST PARA AGREGAR, OJITO
 router.post('/', function(req, res, next){

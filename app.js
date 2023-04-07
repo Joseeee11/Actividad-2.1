@@ -5,10 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-// var equipoRouter = require('./routes/equipo');
+var espaciosRouter = require('./routes/espacios.r');
+var equiposRouter = require('./routes/equipo.r');
+var solicitantesRouter = require('./routes/solicitante.r');
+
 // var solicitanteRouter = require('./routes/solicitante');
 // var personalRouter = require('./routes/personal');
-var espaciosRouter = require('./routes/espacios');
+
 // var reserva_espaciosRouter = require('./routes/reserva_espacios');
 // var reserva_equiposRouter = require('./routes/reserva_equipos');
 
@@ -25,10 +28,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-// app.use('/equipo', equipoRouter);
+app.use('/espacios', espaciosRouter);
+app.use('/equipos', equiposRouter);
+app.use('/solicitantes', solicitantesRouter)
+
 // app.use('/solicitante', solicitanteRouter);
 // app.use('/personal', personalRouter);
-app.use('/espacios', espaciosRouter);
+
 // app.use('/reserva_espacios', reserva_espaciosRouter);
 // app.use('/reserva_equipos', reserva_equiposRouter);
 

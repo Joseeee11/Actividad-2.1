@@ -20,6 +20,17 @@ class reserva_espaciosModel {
             })
         })
     }
+
+    eliminar(borrar) {
+        console.log('estoy eliminando')
+        return new Promise((resolve, reject) => {
+            console.log(`vamos a eliminar ${borrar}`)
+            connection.query('DELETE FROM `reservas_espacios` WHERE id = ?' , [borrar] , function (error, results, fields) {
+                if (error) throw error;
+                resolve();
+            })
+        })
+    }
 }
 
 module.exports = new reserva_espaciosModel();

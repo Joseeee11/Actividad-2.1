@@ -49,6 +49,45 @@ class reserva_espaciosControllers {
       })
     })
   }
+
+  eliminar(borrar) {
+    return new Promise((resolve, reject) => {
+      reserva_espaciosModel.listarID()
+      .then((json) => {
+        let resultado = JSON.parse(json)
+        console.log('buscando si existe');
+
+        let busqueda = []; 
+        for (let i = 0; i < resultado.length; i++) {
+          if (borrar == resultado[i].id){
+            busqueda.push(resultado[i]); //agregamos a busqueda
+            console.log('se encontró');
+          } 
+        };
+        if (busqueda.length == 0) {
+          console.log('No existe');
+          return resolve(`No hay reservas registrada de esta id: ${borrar}`)
+        };
+
+        const eliminado = new Promise((resolve, reject) => {
+          reserva_espaciosModel.eliminar(borrar)
+          .then(() => {
+            console.log('ya se elimino estamos en controlador')
+            resolve(`se ha eliminado la reserva con el id: ${borrar}`);
+          })
+          .catch((err) => {
+            reject(err);
+          })
+        })
+        
+        console.log('nos vamos a rutas');
+        resolve(eliminado);
+      })
+      .catch((err) => {
+        reject(err)
+      })
+    })
+  }
 }
 
 module.exports = new reserva_espaciosControllers();

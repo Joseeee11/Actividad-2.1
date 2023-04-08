@@ -21,12 +21,10 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
   let buscar = req.params.id
   console.log(buscar)
-  // let aver = new Number(buscar)
-  // console.log(aver)
   reserva_espaciosControllers.listarID(buscar)
-  .then((resultado) => {
+  .then((busqueda) => {
     console.log('llegamooooooo a rutaaaaas');
-    res.send(resultado)
+    res.send(busqueda)
   })
   .catch((err) => {
     res.send(err)

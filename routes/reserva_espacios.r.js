@@ -25,6 +25,7 @@ router.get('/:id', function(req, res, next) {
   // console.log(aver)
   reserva_espaciosControllers.listarID(buscar)
   .then((resultado) => {
+    console.log('llegamooooooo a rutaaaaas');
     res.send(resultado)
   })
   .catch((err) => {

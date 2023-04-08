@@ -16,5 +16,19 @@ router.get('/', function(req, res, next) {
   })
 });
 
+//busqueda por Cedula
+router.get('/:CI', function(req, res, next) {
+
+  const parametro = req.params.CI
+
+  solicitantesControllers.listar_Cedula(parametro)
+  .then((resultado) => {
+    res.send(resultado);
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+});
+
 
 module.exports = router;

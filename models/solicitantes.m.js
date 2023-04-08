@@ -9,6 +9,18 @@ class solicitantesModel {
             })
         })
     }
+
+    listar_Cedula(parametro) {
+        console.log('llegamos a modelo')
+        return new Promise((resolve, reject) => {
+            connection.query('SELECT * FROM `solicitantes` WHERE CI = ?' , [parametro] , function (error, results, fields) {
+                if (error) throw error;
+                let json = JSON.stringify(results)
+                console.log(json)
+                resolve (json);
+            })
+        })
+    }
 }
 
 module.exports = new solicitantesModel();

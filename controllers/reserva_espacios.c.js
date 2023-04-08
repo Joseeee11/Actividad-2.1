@@ -14,34 +14,31 @@ class reserva_espaciosControllers {
   }
 
   listarID(buscar) {
-    console.log(buscar);
-    return new Promise((resolve, reject) => {
-      console.log(buscar);
-      reserva_espaciosModel.listarID()
-      .then((resultado) => {
 
-        console.log('llego llego llego llegooooooo llegooooo llegoooooooooo');
-        let pruebaJ = JSON.stringify(resultado)
-        let prueba = JSON.parse(pruebaJ)
-        console.log(prueba);
+    return new Promise((resolve, reject) => {
+
+      reserva_espaciosModel.listarID()
+      .then((json) => {
+
+        console.log('Respuesta del modelo');
+        let resultado = JSON.parse(json)
+        console.log(resultado);
         console.log('listando id'); //sabemos que esta listando por id
 
 
         let busqueda = []; 
 
-        for (let i = 0; i < prueba.length; i++) {
-          if (buscar == prueba[i].id){
-            busqueda.push(prueba[i]); //agregamos a busqueda
-            console.log('les igual?');
-            console.log(busqueda)
+        for (let i = 0; i < resultado.length; i++) {
+          if (buscar == resultado[i].id){
+            busqueda.push(resultado[i]); //agregamos a busqueda
+            console.log('se añadio a busqueda');
           }
           
         };
         
         if (busqueda.length == 0) {
-          console.log('lleeeeeeeeeeeeeegooooooooooooooooooooooooooo AL MALOOOOOOOOOOOO');
+          console.log('Si no hay reserva');
           return resolve(`No hay reservas registrada de esta id: ${buscar}`)
-       //  return (`No hay reservas durante esta id: ${buscar}`);
         };
 
         console.log(busqueda)

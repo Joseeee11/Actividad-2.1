@@ -17,13 +17,14 @@ router.get('/', function(req, res, next) {
   })
 });
 
-//Listar por una Fecha en Específico
+//Listar por ID
 router.get('/:id', function(req, res, next) {
   let buscar = req.params.id
   console.log(buscar)
+
   reserva_espaciosControllers.listarID(buscar)
   .then((busqueda) => {
-    console.log('llegamooooooo a rutaaaaas');
+    console.log('estamos en rutas');
     res.send(busqueda)
   })
   .catch((err) => {

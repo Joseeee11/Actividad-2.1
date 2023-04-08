@@ -15,7 +15,8 @@ class reserva_espaciosModel {
         return new Promise((resolve, reject) => {
             connection.query('SELECT * FROM `reservas_espacios`' , function (error, results, fields) {
                 if (error) throw error;
-                resolve (results);
+                let json = JSON.stringify(results)
+                resolve (json);
             })
         })
     }

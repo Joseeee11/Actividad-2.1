@@ -10,11 +10,23 @@ class reserva_equiposModel {
         })
     }
 
-    listarFecha() {
+    listarID() {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT * FROM `reservas_equipos` WHERE `id` = 1', function (error, results, fields) {
+            console.log('estamos listando')
+            connection.query('SELECT * FROM `reservas_equipos`' , function (error, results, fields) {
                 if (error) throw error;
-                resolve (results);
+                let json = JSON.stringify(results)
+                resolve (json);
+            })
+        })
+    }
+
+    eliminar(borrar) {
+        return new Promise((resolve, reject) => {
+            console.log(`vamos a eliminar la reserva ${borrar}`)
+            connection.query('DELETE FROM `reservas_equipos` WHERE id = ?' , [borrar] , function (error, results, fields) {
+                if (error) throw error;
+                resolve();
             })
         })
     }

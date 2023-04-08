@@ -18,4 +18,22 @@ router.get('/', function(req, res, next) {
 });
 
 
+
+//ELIMINAR
+router.delete('/:id', function(req, res, next) {
+  const borrar = req.params.id
+  console.log(borrar); //id que vamos a borrar
+
+  reserva_equiposControllers.eliminar(borrar)
+  .then((eliminado) => {
+    console.log('estamos en rutas')
+    res.send(eliminado)
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+
+})
+
+
 module.exports = router;

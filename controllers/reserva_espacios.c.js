@@ -13,22 +13,25 @@ class reserva_espaciosControllers {
     })
   }
 
-  listarFecha(fechaBuscar) {
-    return new Promise((resolve, reject) => {
-      reserva_espaciosModel.listar()
+  listarID(buscar) {
+    return new Promise((resolve, reject, aver) => {
+      console.log(buscar)
+      reserva_espaciosModel.listarID(buscar)
       .then((resultado) => {
-        console.log(fechaBuscar);
-        console.log('listando fecha'); //sabemos que esta listando por fecha
-        let busqueda = []; 
-        for (let i = 0; i < resultado.length; i++) {
-          if (fechaBuscar === resultado[i].fecha){
-            busqueda.push(resultado[i]); //agregamos a busqueda
-          }
-        };
-        if (busqueda.length === 0) {
-          return (`No hay reservas durante esta fecha: ${fechaBuscar}`);
-        };
-        resolve(busqueda)
+        console.log(buscar);
+        console.log('listando id'); //sabemos que esta listando por id
+        console.log(resultado);
+
+          // let busqueda = []; 
+          // for (let i = 0; i < resultado.length; i++) {
+          //   if (id == resultado[i].id){
+          //     busqueda.push(resultado[i]); //agregamos a busqueda
+          //   }
+          // };
+          // if (busqueda.length === 0) {
+          //   return (`No hay reservas durante esta id: ${id}`);
+          // };
+          // resolve(busqueda)
       })
       .catch((err) => {
         reject(err)

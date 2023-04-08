@@ -18,9 +18,12 @@ router.get('/', function(req, res, next) {
 });
 
 //Listar por una Fecha en Específico
-router.get('/:fecha', function(req, res, next) {
-  let fechaBuscar = req.params.Fecha;
-  reserva_espaciosControllers.listarFecha(fechaBuscar)
+router.get('/:id', function(req, res, next) {
+  let buscar = req.params.id
+  console.log(buscar)
+  // let aver = new Number(buscar)
+  // console.log(aver)
+  reserva_espaciosControllers.listarID(buscar)
   .then((resultado) => {
     res.send(resultado)
   })

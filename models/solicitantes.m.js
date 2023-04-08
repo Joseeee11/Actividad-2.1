@@ -20,6 +20,17 @@ class solicitantesModel {
             })
         })
     }
+
+    agregar(parametro){
+        console.log("llegamos a modulos klk")
+        return new Promise((resolve, reject) => {
+            connection.query("INSERT INTO `solicitantes` set ?", [parametro], function (error, results, fields) {
+                if (error) throw error;
+                resolve("Se agrego correctamente");
+            })
+
+        })
+    }
 }
 
 module.exports = new solicitantesModel();

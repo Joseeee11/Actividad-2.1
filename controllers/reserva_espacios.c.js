@@ -19,6 +19,7 @@ class reserva_espaciosControllers {
       console.log(buscar);
       reserva_espaciosModel.listarID()
       .then((resultado) => {
+
         console.log('llego llego llego llegooooooo llegooooo llegoooooooooo');
         let pruebaJ = JSON.stringify(resultado)
         let prueba = JSON.parse(pruebaJ)
@@ -31,14 +32,19 @@ class reserva_espaciosControllers {
         for (let i = 0; i < prueba.length; i++) {
           if (buscar == prueba[i].id){
             busqueda.push(prueba[i]); //agregamos a busqueda
+            console.log('les igual?');
+            console.log(busqueda)
           }
-        
+          
         };
         
-        if (busqueda.length == 0) {
+        console.log(busqueda)
+        if (busqueda.length === 0) {
           console.log('lleeeeeeeeeeeeeegooooooooooooooooooooooooooo');
-          return (`No hay reservas durante esta id: ${buscar}`);
+          //return (`No hay reservas durante esta id: ${buscar}`);
+          console.log("No hay reservas durante esta id");
         };
+
         console.log(busqueda)
         resolve(busqueda)
       })

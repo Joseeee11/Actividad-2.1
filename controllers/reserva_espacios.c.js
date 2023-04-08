@@ -36,8 +36,9 @@ class reserva_espaciosControllers {
         };
         
         if (busqueda.length == 0) {
-          console.log('lleeeeeeeeeeeeeegooooooooooooooooooooooooooo');
-          return (`No hay reservas durante esta id: ${buscar}`);
+          console.log('lleeeeeeeeeeeeeegooooooooooooooooooooooooooo AL MALOOOOOOOOOOOO');
+          return resolve(`No hay reservas registrada de esta id: ${buscar}`)
+       //  return (`No hay reservas durante esta id: ${buscar}`);
         };
         console.log(busqueda)
         resolve(busqueda)

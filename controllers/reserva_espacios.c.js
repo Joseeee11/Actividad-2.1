@@ -99,6 +99,25 @@ class reserva_espaciosControllers {
       })
     })
   }
+
+  //agregar una reserva de espacios
+  agregar(parametro){
+    console.log(parametro);
+    return new Promise((resolve, reject) => {
+      // el if compara lo que se debe tener para agregar 
+      if (!parametro || !parametro.hora_inicio || !parametro.hora_fin || !parametro.personal_solici || !parametro.solicitante || !parametro.fecha || !parametro.motivo || !parametro.espacio_solici) {
+      reject("Se debe ingresar correctamente los parametros")
+      }
+      reserva_espaciosModel.agregar(parametro)
+      .then((resultado) =>  {
+        resolve(resultado)
+      })
+      .catch((error) => {
+        console.log(error);
+        reject()
+      })
+    })
+}
 }
 
 module.exports = new reserva_espaciosControllers();

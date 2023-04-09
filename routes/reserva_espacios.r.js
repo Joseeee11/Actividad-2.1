@@ -76,8 +76,8 @@ router.delete('/eliminar/:id', function(req, res, next) {
 
 //agregar espacios
 router.post('/agregar', function(req, res, next) {
-  const {id, hora_inicial, hora_fin, personal_solici, solicitante, fecha, motivo, espacio_solici} = req.body
-  const parametro = { id, hora_inicial, hora_fin, personal_solici, solicitante, fecha, motivo, espacio_solici}
+  const {id, hora_inicio , hora_fin, personal_solici, solicitante, fecha, motivo, espacio_solici} = req.body
+  const parametro = { id, hora_inicio , hora_fin, personal_solici, solicitante, fecha, motivo, espacio_solici}
   parametro.id=null
   reserva_espaciosControllers.agregar(parametro)
   .then((resultado) => {

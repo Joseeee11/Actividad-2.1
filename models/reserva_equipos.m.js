@@ -34,6 +34,16 @@ class reserva_equiposModel {
         })
     }
 
+    //listar por rango de fechas
+    listarFechaRango(fechaI, fechaF) {
+        return new Promise((resolve, reject) => {
+            connection.query('SELECT * FROM `reservas_equipos` WHERE fecha >= ? AND fecha <= ?' , [fechaI, fechaF] , function (error, results, fields) {
+                if (error) throw error;
+                resolve (results);
+            })
+        })
+    }
+
     //eliminar
     eliminar(id) {
         return new Promise((resolve, reject) => {

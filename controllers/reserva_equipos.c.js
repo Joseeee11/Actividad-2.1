@@ -54,6 +54,21 @@ class reserva_equiposControllers {
     })
   }
 
+  listarFechaRango(fechaI, fechaF) {
+    return new Promise((resolve, reject) => {
+      reserva_equiposModel.listarFechaRango(fechaI, fechaF)
+      .then((resultado) => {
+        if (resultado.length == 0) {
+          return resolve(`Por ahora no hay reservas registrados para las fechas del ${fechaI} al ${fechaF}`)
+        }
+        resolve(resultado)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+    })
+  }
+
   //ELIMINAR
   eliminar(id) {
     return new Promise((resolve, reject) => {

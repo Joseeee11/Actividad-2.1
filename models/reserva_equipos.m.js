@@ -10,10 +10,10 @@ class reserva_equiposModel {
         })
     }
 
-    listarID() {
+    listarID(id) {
         return new Promise((resolve, reject) => {
             console.log('estamos listando')
-            connection.query('SELECT * FROM `reservas_equipos`' , function (error, results, fields) {
+            connection.query('SELECT * FROM `reservas_equipos` WHERE id = ?' , [id] , function (error, results, fields) {
                 if (error) throw error;
                 let json = JSON.stringify(results)
                 resolve (json);
@@ -21,10 +21,10 @@ class reserva_equiposModel {
         })
     }
 
-    eliminar(borrar) {
+    eliminar(id) {
         return new Promise((resolve, reject) => {
-            console.log(`vamos a eliminar la reserva ${borrar}`)
-            connection.query('DELETE FROM `reservas_equipos` WHERE id = ?' , [borrar] , function (error, results, fields) {
+            console.log(`vamos a eliminar la reserva ${id}`)
+            connection.query('DELETE FROM `reservas_equipos` WHERE id = ?' , [id] , function (error, results, fields) {
                 if (error) throw error;
                 resolve();
             })

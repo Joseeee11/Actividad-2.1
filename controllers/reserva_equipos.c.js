@@ -12,30 +12,38 @@ class reserva_equiposControllers {
       })
     })
   }
-
-
-  eliminar(borrar) {
+  listarID(id){
     return new Promise((resolve, reject) => {
-      reserva_equiposModel.listarID()
+      reserva_equiposModel.listarID(id)
       .then((json) => {
         let resultado = JSON.parse(json)
-
-        let busqueda = []; 
-        for (let i = 0; i < resultado.length; i++) {
-          if (borrar == resultado[i].id){
-            busqueda.push(resultado[i]); //agregamos a busqueda
-            console.log('se encontró');
-          } 
-        };
-        if (busqueda.length == 0) {
+        if (resultado.length == 0) {
           console.log('No existe');
-          return resolve(`No hay reservas registrada de esta id: ${borrar}`);
+          return resolve(`No hay reservas registrada de esta id: ${id}`);
+        };
+        resolve(resultado)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+    })
+  }
+
+
+  eliminar(id) {
+    return new Promise((resolve, reject) => {
+      reserva_equiposModel.listarID(id)
+      .then((json) => {
+        let resultado = JSON.parse(json)
+        if (resultado.length == 0) {
+          console.log('No existe');
+          return resolve(`No hay reservas registrada de esta id: ${id}`);
         };
 
         const eliminado = new Promise((resolve, reject) => {
-          reserva_equiposModel.eliminar(borrar)
+          reserva_equiposModel.eliminar(id)
           .then(() => {
-            resolve(`se ha eliminado la reserva con el id: ${borrar}`);
+            resolve(`se ha eliminado la reserva con el id: ${id}`);
           })
           .catch((err) => {
             reject(err);

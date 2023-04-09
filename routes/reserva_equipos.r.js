@@ -6,9 +6,19 @@ var reserva_equiposControllers = require("../controllers/reserva_equipos.c.js")
 
 
 
-// EL BUENOO, NO MODIFICAR XD
+
 router.get('/', function(req, res, next) {
   reserva_equiposControllers.listar()
+  .then((resultado) => {
+    res.send(resultado)
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+});
+router.get('/:id', function(req, res, next) {
+  const id = req.params.id
+  reserva_equiposControllers.listarID(id)
   .then((resultado) => {
     res.send(resultado)
   })
@@ -21,12 +31,11 @@ router.get('/', function(req, res, next) {
 
 //ELIMINAR
 router.delete('/eliminar/:id', function(req, res, next) {
-  const borrar = req.params.id
-  console.log(borrar); //id que vamos a borrar
+  const id = req.params.id
+  console.log(id); //id que vamos a borrar
 
-  reserva_equiposControllers.eliminar(borrar)
+  reserva_equiposControllers.eliminar(id)
   .then((eliminado) => {
-    console.log('estamos en rutas')
     res.send(eliminado)
   })
   .catch((err) => {

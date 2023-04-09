@@ -79,10 +79,18 @@ class trabajosModel {
             if (error) reject (error);
                 resolve("Se agrego correctamente");
             })
-
         })
     }
-
+    revisarAgregar(){
+        console.log("llegamos a modelo a");
+        return new Promise((resolve, reject) => {
+            connection.query("SELECT reservas_equipos.id, reservas_equipos.solicitante FROM reservas_equipos, trabajos WHERE reservas_equipos.id != trabajos.reserva_solici; ", function(error, results,fields) {
+                if (error) reject (error);
+                const disponible = JSON.stringify(results)
+                resolve(disponible)
+            })
+        })
+    }
 }
 
 module.exports= new trabajosModel();

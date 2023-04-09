@@ -91,9 +91,16 @@ router.post('/agregar', function(req, res, next) {
     console.log("se agrego correctamente :)")
     res.send(resultado);
   })
-  .catch((err) => {
-    console.log("error")
-    res.send(err)
+  .catch(() => {
+    trabajosControllers.revisarAgregar()
+    .then((disponible)=>{
+      res.send(disponible)
+    })
+    .catch((err)=>{
+      console.log("error")
+      res.send(err)
+    })
+
   })
 });
 

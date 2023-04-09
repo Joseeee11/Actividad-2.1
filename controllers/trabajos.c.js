@@ -135,11 +135,29 @@ class trabajosControllers {
           .then((resultado) =>  {
             resolve(resultado)
           })
-          .catch((err) => {
-            reject(`Ha ocurrido un problema al agregar el trabajo ${err}`)
+          .catch((error) => {
+            console.log(error);
+            reject()
           })
         })
     }
+    revisarAgregar(){
+      console.log("entramos a revisar");
+      return new Promise((resolve, reject) => {
+        console.log("fuimos a nueva promesa");
+        trabajosModel.revisarAgregar()
+        .then((disponible)=>{
+          console.log("entramos a then");
+          resolve(`Las reservas de espacio disponibles son: ${disponible}`)          
+        })
+        .catch((err)=>{
+          console.log("entramos a catch");
+          reject(`Ocurrio un problema: ${err}`)
+        })
+      })
+
+    }
+    
     
 }
 

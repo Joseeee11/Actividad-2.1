@@ -15,9 +15,7 @@ router.get('/', function(req, res, next) {
 });
 //mostrar por cedula
 router.get('/:CI', function(req, res, next) {
-
   const parametro = req.params.CI
-
   personalControllers.listarCedula(parametro)
   .then((resultado) => {
     res.send(resultado);
@@ -26,5 +24,18 @@ router.get('/:CI', function(req, res, next) {
     res.send(err)
   })
 });
+
+
+//eliminar
+router.delete('/eliminar/:CI', function(req, res, next) {
+  const parametro = req.params.CI
+  personalControllers.eliminar(parametro)
+  .then((resultado) => {
+    res.send(resultado);
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+}) 
 
 module.exports = router;

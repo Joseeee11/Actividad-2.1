@@ -19,6 +19,19 @@ class personalModel{
             })
         })
     }
+
+    //eliminar
+    eliminar(parametro){
+        console.log('estoy eliminando')
+        return new Promise((resolve, reject) => {
+            console.log(`vamos a eliminar ${parametro}`)
+            connection.query('DELETE FROM `personal` WHERE CI = ?' , [parametro] , function (error, results, fields) {
+                if (error) throw error;
+                resolve()
+            })
+        })
+    }
+    
 }
 
 module.exports= new personalModel();

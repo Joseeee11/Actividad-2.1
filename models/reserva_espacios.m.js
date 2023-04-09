@@ -10,10 +10,10 @@ class reserva_espaciosModel {
         })
     }
 
-    listarID(id) {
+    listarID(parametro) {
         console.log('estoy en modelos')
         return new Promise((resolve, reject) => {
-            connection.query('SELECT * FROM `reservas_espacios` WHERE id = ?' , [id] , function (error, results, fields) {
+            connection.query('SELECT * FROM `reservas_espacios` WHERE id = ?' , [parametro] , function (error, results, fields) {
                 if (error) throw error;
                 let json = JSON.stringify(results)
                 resolve (json);
@@ -21,11 +21,11 @@ class reserva_espaciosModel {
         })
     }
 
-    eliminar(id) {
+    eliminar(parametro) {
         console.log('estoy eliminando')
         return new Promise((resolve, reject) => {
-            console.log(`vamos a eliminar ${id}`)
-            connection.query('DELETE FROM `reservas_espacios` WHERE id = ?' , [id] , function (error, results, fields) {
+            console.log(`vamos a eliminar ${parametro}`)
+            connection.query('DELETE FROM `reservas_espacios` WHERE id = ?' , [parametro] , function (error, results, fields) {
                 if (error) throw error;
                 resolve();
             })

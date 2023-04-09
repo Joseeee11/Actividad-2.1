@@ -13,17 +13,17 @@ class reserva_espaciosControllers {
     })
   }
 
-  listarID(id) {
+  listarID(parametro) {
 
     return new Promise((resolve, reject) => {
 
-      reserva_espaciosModel.listarID(id)
+      reserva_espaciosModel.listarID(parametro)
       .then((json) => {
 
         let resultado = JSON.parse(json)
         if (resultado.length == 0) {
            console.log('No existe solicitante');
-           return resolve(`No hay solicitantes registrados con esa id: ${id}`)
+           return resolve(`No hay solicitantes registrados con esa id: ${parametro}`)
         };
 
         console.log(resultado)
@@ -35,21 +35,21 @@ class reserva_espaciosControllers {
     })
   }
 
-  eliminar(id) {
+  eliminar(parametro) {
     return new Promise((resolve, reject) => {
-      reserva_espaciosModel.listarID(id)
+      reserva_espaciosModel.listarID(parametro)
       .then((json) => {
         let resultado = JSON.parse(json)
         if (resultado.length == 0) {
-           console.log('No existe solicitante');
-           return resolve(`No hay solicitantes registrados con esa id: ${id}`)
+           console.log('No existe esta reserva');
+           return resolve(`No hay reservas registrados con esa id: ${parametro}`)
         };
 
         const eliminado = new Promise((resolve, reject) => {
-          reserva_espaciosModel.eliminar(id)
+          reserva_espaciosModel.eliminar(parametro)
           .then(() => {
             console.log('ya se elimino estamos en controlador')
-            resolve(`se ha eliminado la reserva con el id: ${id}`);
+            resolve(`se ha eliminado la reserva con el id: ${parametro}`);
           })
           .catch((err) => {
             reject(err);

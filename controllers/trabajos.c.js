@@ -98,7 +98,7 @@ class trabajosControllers {
             resolve(resultado)
           })
           .catch((err) => {
-            reject(err)
+            reject(`Ha ocurrido un problema al agregar el trabajo ${err}`)
           })
         })
     }

@@ -24,7 +24,7 @@ class solicitantesControllers {
            console.log('No existe solicitante');
            return resolve(`No hay solicitantes registrados con esa CI: ${parametro}`)
         };
-        resolve(resultado)
+        resolve(resultado);
       })
       .catch((err) => {
         reject(err)

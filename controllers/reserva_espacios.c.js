@@ -13,36 +13,21 @@ class reserva_espaciosControllers {
     })
   }
 
-  listarID(buscar) {
+  listarID(id) {
 
     return new Promise((resolve, reject) => {
 
-      reserva_espaciosModel.listarID()
+      reserva_espaciosModel.listarID(id)
       .then((json) => {
 
-        console.log('Respuesta del modelo');
         let resultado = JSON.parse(json)
-        console.log(resultado);
-        console.log('listando id'); //sabemos que esta listando por id
-
-
-        let busqueda = []; 
-
-        for (let i = 0; i < resultado.length; i++) {
-          if (buscar == resultado[i].id){
-            busqueda.push(resultado[i]); //agregamos a busqueda
-            console.log('se añadio a busqueda');
-          }
-          
-        };
-        
-        if (busqueda.length == 0) {
-          console.log('Si no hay reserva');
-          return resolve(`No hay reservas registrada de esta id: ${buscar}`)
+        if (resultado.length == 0) {
+           console.log('No existe solicitante');
+           return resolve(`No hay solicitantes registrados con esa id: ${id}`)
         };
 
-        console.log(busqueda)
-        resolve(busqueda)
+        console.log(resultado)
+        resolve(resultado)
       })
       .catch((err) => {
         reject(err)
@@ -50,30 +35,21 @@ class reserva_espaciosControllers {
     })
   }
 
-  eliminar(borrar) {
+  eliminar(id) {
     return new Promise((resolve, reject) => {
-      reserva_espaciosModel.listarID()
+      reserva_espaciosModel.listarID(id)
       .then((json) => {
         let resultado = JSON.parse(json)
-        console.log('buscando si existe');
-
-        let busqueda = []; 
-        for (let i = 0; i < resultado.length; i++) {
-          if (borrar == resultado[i].id){
-            busqueda.push(resultado[i]); //agregamos a busqueda
-            console.log('se encontró');
-          } 
-        };
-        if (busqueda.length == 0) {
-          console.log('No existe');
-          return resolve(`No hay reservas registrada de esta id: ${borrar}`)
+        if (resultado.length == 0) {
+           console.log('No existe solicitante');
+           return resolve(`No hay solicitantes registrados con esa id: ${id}`)
         };
 
         const eliminado = new Promise((resolve, reject) => {
-          reserva_espaciosModel.eliminar(borrar)
+          reserva_espaciosModel.eliminar(id)
           .then(() => {
             console.log('ya se elimino estamos en controlador')
-            resolve(`se ha eliminado la reserva con el id: ${borrar}`);
+            resolve(`se ha eliminado la reserva con el id: ${id}`);
           })
           .catch((err) => {
             reject(err);

@@ -19,10 +19,10 @@ router.get('/', function(req, res, next) {
 
 //Listar por ID
 router.get('/:id', function(req, res, next) {
-  let buscar = req.params.id
-  console.log(buscar)
+  let id = req.params.id
+  console.log(id)
 
-  reserva_espaciosControllers.listarID(buscar)
+  reserva_espaciosControllers.listarID(id)
   .then((busqueda) => {
     console.log('estamos en rutas');
     res.send(busqueda)
@@ -34,10 +34,10 @@ router.get('/:id', function(req, res, next) {
 
 //ELIMINAR
 router.delete('/eliminar/:id', function(req, res, next) {
-  const borrar = req.params.id
-  console.log(borrar); //id que vamos a borrar
+  const id = req.params.id
+  console.log(id); //id que vamos a borrar
 
-  reserva_espaciosControllers.eliminar(borrar)
+  reserva_espaciosControllers.eliminar(id)
   .then((eliminado) => {
     console.log('estamos en rutas')
     res.send(eliminado)

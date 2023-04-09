@@ -33,6 +33,18 @@ class equiposModel {
             })
         })
     }
+
+    //modificar
+    modificar(parametro, equipoModificar){
+        console.log('estoy modificando')
+        return new Promise((resolve, reject) => {
+            console.log(`vamos a modificar el equipo ${parametro}`)
+            connection.query('UPDATE `equipos` set ? WHERE id = ?' , [equipoModificar, parametro] , function (error, results, fields) {
+                if (error) throw error;
+                resolve();
+            })
+        })
+    }
 }
 
 

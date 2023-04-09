@@ -1,3 +1,4 @@
+const { response } = require("express");
 const equiposModel = require("../models/equipos.m")
 
 class equipoControllers {
@@ -63,6 +64,35 @@ class equipoControllers {
     })
   }
 
+  //modificar
+  modificar(parametro, equipoModificar) {
+    return new Promise((resolve, reject) => {
+      if (!equipoModificar || !equipoModificar.nombre || !equipoModificar.serial || !equipoModificar.descripcion || !equipoModificar.fecha_adquisicion || !equipoModificar.estatus) {
+        reject(`La informacion ingresada no es la correcta. Es necesaria la informacion: NOMBRE, SERIAL, DESCRIPCION, FECHA_ADQUISICION y ESTATUS`);
+      }
+      equiposModel.listarID(parametro)
+      .then((json) => {
+        let resultado = JSON.parse(json)
+        if (resultado.length == 0) {
+          console.log('No existe el equipo');
+          return resolve(`No hay equipos registrados con esta id: ${parametro}. Por lo tanto no se puede modificar`)
+        };
+        if (equipoModificar.estatus != "Disponible" && equipoModificar.estatus != "Ocupado" || equipoModificar.estatus != "Mantenimiento") {
+          return resolve(`El estatus del equipo solo puede estar en: Disponible, Ocupado, Mantenimiento`);
+        }
+        const modificado = new Promise((resolve, reject) => {
+          equiposModel.modificar(parametro, equipoModificar)
+          .then(() => {
+            resolve(`se ha modificado correctamente el equipo con el id: ${parametro}`);
+          })
+          .catch((err) => {
+            reject(err);
+          })
+        })
+        resolve(modificado);
+      })
+    })
+  }
 
 }
 

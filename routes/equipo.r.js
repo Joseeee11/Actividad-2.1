@@ -43,6 +43,23 @@ router.delete('/eliminar/:id', function(req, res, next) {
   })
 })
 
+
+//modificar equipo
+router.put('/modificar/:id', function(req, res, next) {
+  const parametro = req.params.id; //por medio de parametro buscaremos cual es el equipo a modificar
+  let { id , nombre , serial , descripcion , fecha_adquisicion , estatus } = req.body; //extraemos las propiedades necesarias para actualizar
+  const equipoModificar = { id , nombre , serial , descripcion , fecha_adquisicion , estatus } //las guardamos en una constante
+  equipoModificar.id == null; //ya que el usuario no puede modificar un identificador
+
+  equipoControllers.modificar(parametro, equipoModificar)
+  .then((modificado) => {
+    res.send(modificado)
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+})
+
  
 
 

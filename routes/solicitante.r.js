@@ -4,9 +4,8 @@ var router = express.Router();
 //importar controladores 
 var solicitantesControllers = require("../controllers/solicitantes.c.js")
 
-
+//mostrar
 router.get('/', function(req, res, next) {
-
   solicitantesControllers.listar()
   .then((resultado) => {
     res.send(resultado);
@@ -18,9 +17,7 @@ router.get('/', function(req, res, next) {
 
 //busqueda por Cedula
 router.get('/:CI', function(req, res, next) {
-
   const parametro = req.params.CI
-
   solicitantesControllers.listar_Cedula(parametro)
   .then((resultado) => {
     res.send(resultado);
@@ -30,6 +27,8 @@ router.get('/:CI', function(req, res, next) {
   })
 });
 
+
+//agregar
 router.post('/agregar', function(req, res, next) {
   const {id, nombre_apellido, CI, fecha_nacimiento, direccion, contraseña, nro_telefono} = req.body
   const parametro = { id,nombre_apellido, CI, fecha_nacimiento, direccion, contraseña, nro_telefono}

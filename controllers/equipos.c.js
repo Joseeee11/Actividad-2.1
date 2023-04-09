@@ -1,6 +1,7 @@
 const equiposModel = require("../models/equipos.m")
 
 class equipoControllers {
+  //listar general
   listar(){
     return new Promise((resolve, reject) => {
       console.log('listando ;3');
@@ -35,7 +36,7 @@ class equipoControllers {
   }
 
 
-  //eliminar para ello se pide el id del cual se borrará
+  //eliminar equipos
   eliminar(parametro) {
     return new Promise((resolve, reject) => {
       equiposModel.listarID(parametro)
@@ -45,19 +46,15 @@ class equipoControllers {
            console.log('No existe el equipo');
            return resolve(`No hay equipos registrados con esa id: ${parametro}`)
         };
-
         const eliminado = new Promise((resolve, reject) => {
           equiposModel.eliminar(parametro)
           .then(() => {
-            console.log('ya se elimino estamos en controlador')
             resolve(`se ha eliminado el equipo con el id: ${parametro}`);
           })
           .catch((err) => {
             reject(err);
           })
         })
-        
-        console.log('nos vamos a rutas');
         resolve(eliminado);
       })
       .catch((err) => {

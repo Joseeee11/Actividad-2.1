@@ -16,6 +16,8 @@ router.get('/', function(req, res, next) {
     res.send(err)
   })
 });
+
+//listar po ID
 router.get('/:id', function(req, res, next) {
   const id = req.params.id
   reserva_equiposControllers.listarID(id)

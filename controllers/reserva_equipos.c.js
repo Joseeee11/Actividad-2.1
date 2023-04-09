@@ -1,6 +1,7 @@
 const reserva_equiposModel = require("../models/reserva_equipos.m")
 
 class reserva_equiposControllers {
+  //listar general
   listar(){
     return new Promise((resolve, reject) => {
       reserva_equiposModel.listar()
@@ -15,6 +16,8 @@ class reserva_equiposControllers {
       })
     })
   }
+
+  //listar por id
   listarID(id){
     return new Promise((resolve, reject) => {
       reserva_equiposModel.listarID(id)
@@ -32,7 +35,7 @@ class reserva_equiposControllers {
     })
   }
 
-
+  //ELIMINAR
   eliminar(id) {
     return new Promise((resolve, reject) => {
       reserva_equiposModel.listarID(id)

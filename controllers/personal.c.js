@@ -1,6 +1,7 @@
 const personalModel = require("../models/personal.m")
 
 class personalControllers {
+  //listar general
   listar(){
     return new Promise((resolve, reject) => {
       personalModel.listar()
@@ -15,6 +16,8 @@ class personalControllers {
       })
     })
   }
+
+  //listar por cedula
   listarCedula(parametro) {
     return new Promise((resolve, reject) => {
       personalModel.listarCedula(parametro)
@@ -37,7 +40,6 @@ class personalControllers {
     return new Promise((resolve, reject) => {
       personalModel.listarCedula(parametro)
       .then((json) => {
-        console.log('llegamos')
         let resultado = JSON.parse(json)
         if (resultado.length == 0) {
            console.log('No existe personal');
@@ -46,7 +48,7 @@ class personalControllers {
         const eliminado = new Promise((resolve, reject) => {
           personalModel.eliminar(parametro)
           .then(() => {
-            console.log('ya se elimino estamos en controlador')
+            console.log('ya se elimino')
             resolve(`se ha eliminado la reserva con el id: ${parametro}`);
           })
           .catch((err) => {

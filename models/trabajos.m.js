@@ -1,6 +1,7 @@
 const connection = require('./conexion');
 
 class trabajosModel {
+    //listar general
     listar() {
         return new Promise( (resolve, reject) => {
             console.log ('AHORA ESTAMOS EN EL MODELO :)')
@@ -21,6 +22,7 @@ class trabajosModel {
             })
         })
     }
+
     //modelo listar por PERSONAL
     listarPersonal(parametro) {
         return new Promise((resolve, reject) => {

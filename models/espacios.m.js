@@ -2,6 +2,7 @@ const connection = require('./conexion')
 
 
 class espaciosModel{
+    //listar general
     listar (){
         return new Promise ((resolve, reject) => {
             console.log ('AHORA ESTAMOS EN EL MODELO :)')

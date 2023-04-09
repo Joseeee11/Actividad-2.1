@@ -1,6 +1,7 @@
 const trabajosModel = require('../models/trabajos.m');
 
 class trabajosControllers {
+  //listar general
     listar(){
         return new Promise((resolve, reject) => {
             console.log ('LISTO  YA ESTAMOS EN CONTROLADOR');
@@ -16,6 +17,7 @@ class trabajosControllers {
             })
         })
     }
+
     //LISTAR POR id
     listarID(parametro) {
       return new Promise((resolve, reject) => {
@@ -32,6 +34,7 @@ class trabajosControllers {
         })
       })
     }
+    
     //LISTAR POR Personal
     listarPersonal(parametro) {
       return new Promise((resolve, reject) => {

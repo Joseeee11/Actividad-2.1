@@ -1,6 +1,7 @@
 const reserva_espaciosModel = require("../models/reserva_espacios.m")
 
 class reserva_espaciosControllers {
+  //listar general
   listar(){
     return new Promise((resolve, reject) => {
       reserva_espaciosModel.listar()
@@ -16,19 +17,16 @@ class reserva_espaciosControllers {
     })
   }
 
+  //lisatr por ID
   listarID(parametro) {
-
     return new Promise((resolve, reject) => {
-
       reserva_espaciosModel.listarID(parametro)
       .then((json) => {
-
         let resultado = JSON.parse(json)
         if (resultado.length == 0) {
            console.log('No existe reservas');
            return resolve(`No hay reservas registrados con esa id: ${parametro}`)
         };
-
         console.log(resultado)
         resolve(resultado)
       })
@@ -38,6 +36,7 @@ class reserva_espaciosControllers {
     })
   }
 
+  //eliminar
   eliminar(parametro) {
     return new Promise((resolve, reject) => {
       reserva_espaciosModel.listarID(parametro)
@@ -47,7 +46,6 @@ class reserva_espaciosControllers {
            console.log('No existe esta reserva');
            return resolve(`No hay reservas registrados con esa id: ${parametro}`)
         };
-
         const eliminado = new Promise((resolve, reject) => {
           reserva_espaciosModel.eliminar(parametro)
           .then(() => {
@@ -58,7 +56,6 @@ class reserva_espaciosControllers {
             reject(err);
           })
         })
-        
         console.log('nos vamos a rutas');
         resolve(eliminado);
       })

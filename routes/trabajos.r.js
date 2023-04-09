@@ -4,6 +4,7 @@ var router = express.Router();
 //importar controladores 
 var trabajosControllers = require("../controllers/trabajos.c.js");
 
+//listar general
 router.get('/', function(req, res, next) {
     console.log('estamos en ruta')
     trabajosControllers.listar()
@@ -15,6 +16,8 @@ router.get('/', function(req, res, next) {
     })
     }
 )
+
+//listar por id
 router.get('/:id', function(req, res, next) {
   let parametro = req.params.id
   trabajosControllers.listarID(parametro)
@@ -25,6 +28,7 @@ router.get('/:id', function(req, res, next) {
     res.send(err)
   })
 });
+
 //listar por personal
 router.get('/personal/:id_personal', function(req, res, next) {
   let parametro = req.params.id_personal  //usuario ingrese el id del personal

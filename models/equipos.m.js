@@ -1,6 +1,7 @@
 const connection = require('./conexion')
 
 class equiposModel {
+    //mostrar general
     listar(){
         return new Promise( (resolve, reject) => {
             connection.query('SELECT * FROM `equipos`', function (error, results, fields) {

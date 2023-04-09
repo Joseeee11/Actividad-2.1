@@ -1,6 +1,7 @@
 const connection = require('./conexion');
 
 class reserva_espaciosModel {
+    //listar en general
     listar(){
         return new Promise((resolve, reject) => {
             connection.query('SELECT * FROM `reservas_espacios`', function (error, results, fields) {
@@ -10,6 +11,7 @@ class reserva_espaciosModel {
         })
     }
 
+    //listar por ID
     listarID(parametro) {
         console.log('estoy en modelos')
         return new Promise((resolve, reject) => {
@@ -21,6 +23,7 @@ class reserva_espaciosModel {
         })
     }
 
+    //eliminar
     eliminar(parametro) {
         console.log('estoy eliminando')
         return new Promise((resolve, reject) => {

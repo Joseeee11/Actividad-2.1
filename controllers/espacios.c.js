@@ -2,6 +2,7 @@ const espaciosModel = require ('../models/espacios.m')
  
  
  class espaciosCrontrolles {
+  //listar general
   listar(){
     return new Promise ((resolve, reject) => {
       console.log ('LISTO  YA ESTAMOS EN CONTROLADOR');
@@ -15,12 +16,10 @@ const espaciosModel = require ('../models/espacios.m')
       .catch((err) => {
         reject (err)
       });
-
     } )
-
   }
 
- }
+}
 
 
 var espaciosC = new espaciosCrontrolles()

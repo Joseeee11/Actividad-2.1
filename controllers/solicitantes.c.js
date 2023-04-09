@@ -2,6 +2,7 @@ const { json } = require("express");
 const solicitantesModel = require("../models/solicitantes.m.js")
 
 class solicitantesControllers {
+  //listar general
   listar(){
     return new Promise((resolve, reject) => {
       solicitantesModel.listar()
@@ -17,6 +18,7 @@ class solicitantesControllers {
     })
   }
 
+  //listar por cedula
   listar_Cedula(parametro){
     return new Promise((resolve, reject) => {
 
@@ -34,6 +36,8 @@ class solicitantesControllers {
       })
     })
   }
+
+  //agregar un solicitante
   agregar(parametro){
     console.log(parametro);
     return new Promise((resolve, reject) => {

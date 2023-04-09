@@ -1,6 +1,7 @@
 const connection = require('./conexion');
 
 class personalModel{
+    //listar general
     listar(){
         return new Promise((resolve, reject)=>{
             connection.query ('SELECT * FROM `personal`', function (error, results, fields) {
@@ -9,6 +10,8 @@ class personalModel{
             }) 
         })
     }
+
+    //listar por cedula
     listarCedula(parametro) {
         return new Promise((resolve, reject) => {
             connection.query('SELECT * FROM `personal` WHERE CI = ?' , [parametro] , function (error, results, fields) {

@@ -55,6 +55,20 @@ class reserva_espaciosModel {
             })
         })
     }
+
+    //agregando
+    agregar(parametro){
+        console.log("estoy agregando")
+        return new Promise((resolve, reject) => {
+            console.log(parametro);
+            connection.query("INSERT INTO `trabajos` set ?", [parametro], function (error, results, fields) {
+            // connection.query("INSERT INTO `trabajos` (`id`, `personal_solici`, `reserva_solici`, `equipos_solici`, `fecha_inicio`, `fecha_fin`, `descripcion`) VALUES (NULL, '2', '8', '3', '2023-04-02', '2023-04-04', 'PRUEBAAAAAA');", function (error, results, fields) {
+                
+            if (error) reject (error);
+                resolve("Se agrego correctamente");
+            })
+        })
+    }
 }
 
 module.exports = new reserva_espaciosModel();

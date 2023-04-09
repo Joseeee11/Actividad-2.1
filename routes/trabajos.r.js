@@ -100,7 +100,6 @@ router.post('/agregar', function(req, res, next) {
       console.log("error")
       res.send(err)
     })
-
   })
 });
 

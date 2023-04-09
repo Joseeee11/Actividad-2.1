@@ -27,9 +27,8 @@ router.get('/:CI', function(req, res, next) {
 
 // post
 router.post('/agregar', function(req, res, next) {
-  const {id, usuario_unico, nombre, CI, cargo, especialidad, contrasena} = req.body
-  const parametro = { id,usuario_unico, nombre, CI, cargo, especialidad, contrasena}
-  parametro.id=null
+  const { usuario_unico, nombre, CI, cargo, especialidad, contrasena} = req.body
+  const parametro = { usuario_unico, nombre, CI, cargo, especialidad, contrasena}
   personalControllers.agregar(parametro)
   .then((resultado) => {
     console.log("se agrego correctamente :)")

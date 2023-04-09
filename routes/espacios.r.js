@@ -45,9 +45,8 @@ router.put('/modificar/:id', function(req, res, next) {
 
 //AGREGAR ESPACIOS
 router.post('/agregar', function(req, res, next) {
-  const {id, nombre, direccion, descripcion, estatus} = req.body
-  const parametro = { id,nombre, direccion, descripcion, estatus}
-  parametro.id=null
+  const { nombre, direccion, descripcion, estatus} = req.body
+  const parametro = { nombre, direccion, descripcion, estatus}
   espaciosControllers.agregar(parametro)
   .then((resultado) => {
     console.log("se agrego correctamente :)")

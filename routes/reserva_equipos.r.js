@@ -59,9 +59,8 @@ router.get('/fechasRango/:fechaI/:fechaF', function(req, res, next) {
 
 //agregar equipos
 router.post('/agregar', function(req, res, next) {
-  const {id, solicitante , hora_inicio, hora_fin, personal_solici, fecha, motivo, equipo_solici} = req.body
-  const parametro = { id, solicitante, hora_inicio , hora_fin, personal_solici, fecha, motivo, equipo_solici}
-  parametro.id=null
+  const { solicitante , hora_inicio, hora_fin, personal_solici, fecha, motivo, equipo_solici} = req.body
+  const parametro = { solicitante, hora_inicio , hora_fin, personal_solici, fecha, motivo, equipo_solici}
   reserva_equiposControllers.agregar(parametro)
   .then((resultado) => {
     console.log("se agrego correctamente :)")

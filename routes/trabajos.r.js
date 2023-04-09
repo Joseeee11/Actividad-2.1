@@ -98,9 +98,8 @@ router.delete('/eliminar/:id', function(req, res, next) {
 
 //agregar trabajos
 router.post('/agregar', function(req, res, next) {
-  const {id, personal_solici, reserva_solici, equipos_solici, fecha_inicio, fecha_fin, descripcion} = req.body
-  const parametro = { id,personal_solici, reserva_solici, equipos_solici, fecha_inicio, fecha_fin, descripcion}
-  parametro.id=null
+  const { personal_solici, reserva_solici, equipos_solici, fecha_inicio, fecha_fin, descripcion} = req.body
+  const parametro = { personal_solici, reserva_solici, equipos_solici, fecha_inicio, fecha_fin, descripcion}
   trabajosControllers.agregar(parametro)
   .then((resultado) => {
     console.log("se agrego correctamente :)")

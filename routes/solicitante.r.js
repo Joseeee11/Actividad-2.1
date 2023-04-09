@@ -30,9 +30,8 @@ router.get('/:CI', function(req, res, next) {
 
 //agregar
 router.post('/agregar', function(req, res, next) {
-  const {id, nombre_apellido, CI, fecha_nacimiento, direccion, contraseña, nro_telefono} = req.body
-  const parametro = { id,nombre_apellido, CI, fecha_nacimiento, direccion, contraseña, nro_telefono}
-  parametro.id=null
+  const { nombre_apellido, CI, fecha_nacimiento, direccion, contraseña, nro_telefono} = req.body
+  const parametro = { nombre_apellido, CI, fecha_nacimiento, direccion, contraseña, nro_telefono}
   solicitantesControllers.agregar(parametro)
   .then((resultado) => {
     console.log("se agrego correctamente :)")

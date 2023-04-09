@@ -52,6 +52,44 @@ class trabajosControllers {
       })
     }
 
+    //listar por fecha especìfica inicial del trabajo
+    listarFechaI(parametro) {
+      return new Promise((resolve, reject) => {
+        trabajosModel.listarFechaI(parametro)
+        .then((json) => {
+          let resultado = JSON.parse(json)
+          if (resultado.length == 0) {
+            console.log('No existe trabajo');
+            return resolve(`No hay trabajos registrados que inicien en esta fecha: ${parametro}`)
+          };
+          console.log(resultado)
+          resolve(resultado)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+      })
+    }
+
+    //listar por fecha especìfica final del trabajo
+    listarFechaF(parametro) {
+      return new Promise((resolve, reject) => {
+        trabajosModel.listarFechaF(parametro)
+        .then((json) => {
+          let resultado = JSON.parse(json)
+          if (resultado.length == 0) {
+            console.log('No existe trabajo');
+            return resolve(`No hay trabajos registrados que finalicen en esta fecha: ${parametro}`)
+          };
+          console.log(resultado)
+          resolve(resultado)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+      })
+    }
+
     //eliminar
     eliminar(parametro) {
       return new Promise((resolve, reject) => {

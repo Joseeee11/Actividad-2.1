@@ -41,6 +41,32 @@ router.get('/personal/:id_personal', function(req, res, next) {
   })
 });
 
+//listar por fecha específica inicial del trabajo
+router.get('/fechaInicial/:fecha', function(req, res, next) {
+  let parametro = req.params.fecha
+  console.log(`buscar trabajo con la fecha ${parametro}`) //
+  trabajosControllers.listarFechaI(parametro)
+  .then((resultado) => {
+    res.send(resultado)
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+});  
+
+//listar por fecha específica final del trabajo
+router.get('/fechaFinal/:fecha', function(req, res, next) {
+  let parametro = req.params.fecha
+  console.log(`buscar trabajo con la fecha ${parametro}`) //
+  trabajosControllers.listarFechaF(parametro)
+  .then((resultado) => {
+    res.send(resultado)
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+}); 
+
 //eliminar trabajos
 router.delete('/eliminar/:id', function(req, res, next) {
   const parametro = req.params.id

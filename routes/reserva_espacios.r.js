@@ -32,6 +32,19 @@ router.get('/:id', function(req, res, next) {
   })
 });
 
+//listar por fecha
+router.get('/fecha/:fecha', function(req, res, next) {
+  let parametro = req.params.fecha
+  console.log(`buscar reserva con la fecha ${parametro}`) //
+  reserva_espaciosControllers.listarFecha(parametro)
+  .then((resultado) => {
+    res.send(resultado)
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+});
+
 //ELIMINAR 
 router.delete('/eliminar/:id', function(req, res, next) {
   const parametro = req.params.id

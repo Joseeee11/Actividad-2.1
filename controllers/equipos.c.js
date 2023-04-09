@@ -70,7 +70,6 @@ class equipoControllers {
       if (!equipoModificar || !equipoModificar.nombre || !equipoModificar.serial || !equipoModificar.descripcion || !equipoModificar.fecha_adquisicion || !equipoModificar.estatus) {
         reject(`La informacion ingresada no es la correcta. Es necesaria la informacion: NOMBRE, SERIAL, DESCRIPCION, FECHA_ADQUISICION y ESTATUS`);
       }
-      
       equiposModel.listarID(parametro)
       .then((json) => {
         let resultado = JSON.parse(json)
@@ -78,13 +77,9 @@ class equipoControllers {
           console.log('No existe el equipo');
           return resolve(`No hay equipos registrados con esta id: ${parametro}. Por lo tanto no se puede modificar`)
         };
-        console.log('hola')
-        console.log(equipoModificar.estatus)
         if (equipoModificar.estatus != "Disponible" && equipoModificar.estatus != "Ocupado" && equipoModificar.estatus != "Mantenimiento") {
           return resolve(`El estatus del equipo solo puede estar en: Disponible, Ocupado, Mantenimiento`);
         }
-
-        console.log('aqui estoy')
         const modificado = new Promise((resolve, reject) => {
           equiposModel.modificar(parametro, equipoModificar)
           .then(() => {

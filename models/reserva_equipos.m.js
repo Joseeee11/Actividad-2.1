@@ -23,6 +23,17 @@ class reserva_equiposModel {
         })
     }
 
+    //listar por una fecha en especifico
+    listarFecha(parametro) {
+        return new Promise((resolve, reject) => {
+            connection.query('SELECT * FROM `reservas_equipos` WHERE fecha = ?' , [parametro] , function (error, results, fields) {
+                if (error) throw error;
+                let json = JSON.stringify(results)
+                resolve (json);
+            })
+        })
+    }
+
     //eliminar
     eliminar(id) {
         return new Promise((resolve, reject) => {

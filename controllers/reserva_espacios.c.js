@@ -36,6 +36,25 @@ class reserva_espaciosControllers {
     })
   }
 
+  //listar por fecha especìfica
+  listarFecha(parametro) {
+    return new Promise((resolve, reject) => {
+      reserva_espaciosModel.listarFecha(parametro)
+      .then((json) => {
+        let resultado = JSON.parse(json)
+        if (resultado.length == 0) {
+           console.log('No existe reservas');
+           return resolve(`No hay reservas registrados con esta fecha: ${parametro}`)
+        };
+        console.log(resultado)
+        resolve(resultado)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+    })
+  }
+
   //eliminar
   eliminar(parametro) {
     return new Promise((resolve, reject) => {

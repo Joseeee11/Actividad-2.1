@@ -35,6 +35,25 @@ class reserva_equiposControllers {
     })
   }
 
+  //listar por fecha
+  listarFecha(parametro){
+    return new Promise((resolve, reject) => {
+      reserva_equiposModel.listarFecha(parametro)
+      .then((json) => {
+        let resultado = JSON.parse(json)
+        if (resultado.length == 0) {
+           console.log('No existe reservas');
+           return resolve(`No hay reservas registrados con esta fecha: ${parametro}`)
+        };
+        console.log(resultado)
+        resolve(resultado)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+    })
+  }
+
   //ELIMINAR
   eliminar(id) {
     return new Promise((resolve, reject) => {

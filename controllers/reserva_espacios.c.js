@@ -55,6 +55,22 @@ class reserva_espaciosControllers {
     })
   }
 
+  //listar por rango de fechas
+  listarFechaRango(fechaI, fechaF) {
+    return new Promise((resolve, reject) => {
+      reserva_espaciosModel.listarFechaRango(fechaI, fechaF)
+      .then((resultado) => {
+        if (resultado.length == 0) {
+          return resolve(`Por ahora no hay reservas registrados para las fechas del ${fechaI} al ${fechaF}`)
+        }
+        resolve(resultado)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+    })
+  }
+
   //eliminar
   eliminar(parametro) {
     return new Promise((resolve, reject) => {

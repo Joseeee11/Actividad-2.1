@@ -45,6 +45,21 @@ router.get('/fecha/:fecha', function(req, res, next) {
   })
 });
 
+//listar por rango de fechas
+router.get('/fechasRango/:fechaI/:fechaF', function(req, res, next) {
+  let fechaI = req.params.fechaI
+  let fechaF = req.params.fechaF
+
+  console.log(`buscar reservas que se necuentre entre ${fechaI} a ${fechaF}`) 
+  reserva_espaciosControllers.listarFechaRango(fechaI, fechaF)
+  .then((resultado) => {
+    res.send(resultado)
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+})    //PROBAR CON /fechasRango/2014-02-02/2015-12-12
+
 //ELIMINAR 
 router.delete('/eliminar/:id', function(req, res, next) {
   const parametro = req.params.id

@@ -34,6 +34,16 @@ class reserva_espaciosModel {
         })
     }
 
+    //listar por rango de fechas
+    listarFechaRango(fechaI, fechaF) {
+        return new Promise((resolve, reject) => {
+            connection.query('SELECT * FROM `reservas_espacios` WHERE fecha >= ? AND fecha <= ?' , [fechaI, fechaF] , function (error, results, fields) {
+                if (error) throw error;
+                resolve (results);
+            })
+        })
+    }
+
     //eliminar
     eliminar(parametro) {
         console.log('estoy eliminando')

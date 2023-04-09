@@ -29,6 +29,22 @@ class trabajosControllers {
         })
       })
     }
+    //LISTAR POR Personal
+    listarPersonal(parametro) {
+      return new Promise((resolve, reject) => {
+        trabajosModel.listarPersonal(parametro)
+        .then((json) => {
+          let resultado = JSON.parse(json)
+          if (resultado.length == 0) {
+             return resolve(`No hay trabajos registrados para el Personal: ${parametro}`)
+          };
+          resolve(resultado)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+      })
+    }
 
     //eliminar
     eliminar(parametro) {

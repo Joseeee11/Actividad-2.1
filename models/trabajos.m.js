@@ -21,6 +21,16 @@ class trabajosModel {
             })
         })
     }
+    //modelo listar por PERSONAL
+    listarPersonal(parametro) {
+        return new Promise((resolve, reject) => {
+            connection.query('SELECT * FROM `trabajos` WHERE personal_solici = ?' , [parametro] , function (error, results, fields) {
+                if (error) throw error;
+                let json = JSON.stringify(results)
+                resolve (json);
+            })
+        })
+    }
 
     //eliminar por ID
     eliminar(parametro) {

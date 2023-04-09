@@ -15,7 +15,6 @@ router.get('/', function(req, res, next) {
     })
     }
 )
-
 router.get('/:id', function(req, res, next) {
   let parametro = req.params.id
   trabajosControllers.listarID(parametro)
@@ -26,7 +25,17 @@ router.get('/:id', function(req, res, next) {
     res.send(err)
   })
 });
-
+//listar por personal
+router.get('/personal/:id_personal', function(req, res, next) {
+  let parametro = req.params.id_personal  //usuario ingrese el id del personal
+  trabajosControllers.listarPersonal(parametro)
+  .then((resultado) => {
+    res.send(resultado)
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+});
 
 //eliminar trabajos
 router.delete('/eliminar/:id', function(req, res, next) {

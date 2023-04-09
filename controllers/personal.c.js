@@ -12,6 +12,22 @@ class personalControllers {
       })
     })
   }
+  listarCedula(parametro) {
+    return new Promise((resolve, reject) => {
+      personalModel.listarCedula(parametro)
+      .then((json) => {
+        let resultado = JSON.parse(json)
+        if (resultado.length == 0) {
+           console.log('No existe personal');
+           return resolve(`No hay personal registrados con esa CI: ${parametro}`)
+        };
+        resolve(resultado);
+      })
+      .catch((err) => {
+        reject(err)
+      })
+    })
+  }
 }
 
 module.exports = new personalControllers();

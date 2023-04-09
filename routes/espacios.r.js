@@ -6,7 +6,7 @@ var espaciosControllers = require("../controllers/espacios.c.js")
 
 
 
-// EL BUENOO, NO MODIFICAR XD
+//LISTAR
 router.get('/', function(req, res, next) {
   console.log('ESTAMOS EN RUTA');
   espaciosControllers.listar()
@@ -18,6 +18,32 @@ router.get('/', function(req, res, next) {
   })
 });
 
+router.get('/:id', function(req, res, next) {
+  let parametro = req.params.id
+  espaciosControllers.listarID(parametro)
+  .then((resultado) => {
+    res.send(resultado)
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+});
+
+//MODIFICAR ESPACIOS 
+router.put('/modificar/:id', function(req, res, next) {
+  const parametro = req.params.id; 
+  let { nombre , direccion , descripcion , estatus } = req.body; 
+  const espacioModificar = { nombre , direccion , descripcion , estatus } 
+  espaciosControllers.modificar(parametro, espacioModificar)
+  .then((modificado) => {
+    res.send(modificado)
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+})
+
+//AGREGAR ESPACIOS
 router.post('/agregar', function(req, res, next) {
   const {id, nombre, direccion, descripcion, estatus} = req.body
   const parametro = { id,nombre, direccion, descripcion, estatus}

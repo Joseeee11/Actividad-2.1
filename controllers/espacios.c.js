@@ -18,6 +18,55 @@ const espaciosModel = require ('../models/espacios.m')
       });
     } )
   }
+
+  //listar por ID
+  listarID(parametro) {
+    return new Promise((resolve, reject) => {
+      espaciosModel.listarID(parametro)
+      .then((json) => {
+        let resultado = JSON.parse(json)
+        if (resultado.length == 0) {
+           return resolve(`No hay espacios registrados con esta id: ${parametro}`)
+        };
+        resolve(resultado)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+    })
+  }
+
+  //modificar un espacio
+  modificar(parametro, espacioModificar) {
+    return new Promise((resolve, reject) => {
+      if (!espacioModificar || !espacioModificar.nombre || !espacioModificar.direccion || !espacioModificar.descripcion || !espacioModificar.estatus) {
+        reject(`La informacion ingresada no es la correcta. Es necesaria la informacion: NOMBRE, DIRECCION, DESCRIPCION, y ESTATUS`);
+      }
+      espaciosModel.listarID(parametro)
+      .then((json) => {
+        let resultado = JSON.parse(json)
+        if (resultado.length == 0) {
+          console.log('No existe el espacios');
+          return resolve(`No hay espacios registrados con esta id: ${parametro}. Por lo tanto no se puede modificar`)
+        };
+        if (espacioModificar.estatus != "Disponible" && espacioModificar.estatus != "Ocupado" && espacioModificar.estatus != "Mantenimiento") {
+          return resolve(`El estatus del espacios solo puede estar en: Disponible, Ocupado, Mantenimiento`);
+        }
+        const modificado = new Promise((resolve, reject) => {
+          espaciosModel.modificar(parametro, espacioModificar)
+          .then(() => {
+            resolve(`se ha modificado correctamente el espacios con el id: ${parametro}`);
+          })
+          .catch((err) => {
+            reject(err);
+          })
+        })
+        resolve(modificado);
+      })
+    })
+  }
+
+  //agregar un espacio
   agregar(parametro){
     console.log(parametro);
     return new Promise((resolve, reject) => {

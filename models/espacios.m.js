@@ -12,6 +12,30 @@ class espaciosModel{
             }) 
         })
     } 
+
+    //modelo listar pro ID
+    listarID(parametro) {
+        return new Promise((resolve, reject) => {
+            connection.query('SELECT * FROM `espacios` WHERE id = ?' , [parametro] , function (error, results, fields) {
+                if (error) throw error;
+                let json = JSON.stringify(results)
+                resolve (json);
+            })
+        })
+    }
+
+    //modificar espacios
+    modificar(parametro, espacioModificar){
+        console.log('estoy modificando')
+        return new Promise((resolve, reject) => {
+            console.log(`vamos a modificar el espacio ${parametro}`)
+            connection.query('UPDATE `espacios` set ? WHERE id = ?' , [espacioModificar, parametro] , function (error, results, fields) {
+                if (error) throw error;
+                resolve();
+            })
+        })
+    }
+
     //agregar espacios
     agregar(parametro){
         console.log("llegamos a modulos klk")

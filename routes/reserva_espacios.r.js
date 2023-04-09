@@ -23,16 +23,16 @@ router.get('/:id', function(req, res, next) {
   console.log(parametro)
 
   reserva_espaciosControllers.listarID(parametro)
-  .then((busqueda) => {
+  .then((resultado) => {
     console.log('estamos en rutas');
-    res.send(busqueda)
+    res.send(resultado)
   })
   .catch((err) => {
     res.send(err)
   })
 });
 
-//ELIMINAR
+//ELIMINAR 
 router.delete('/eliminar/:id', function(req, res, next) {
   const parametro = req.params.id
   console.log(parametro); //id que vamos a borrar

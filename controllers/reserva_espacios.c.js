@@ -22,8 +22,8 @@ class reserva_espaciosControllers {
 
         let resultado = JSON.parse(json)
         if (resultado.length == 0) {
-           console.log('No existe solicitante');
-           return resolve(`No hay solicitantes registrados con esa id: ${parametro}`)
+           console.log('No existe reservas');
+           return resolve(`No hay reservas registrados con esa id: ${parametro}`)
         };
 
         console.log(resultado)

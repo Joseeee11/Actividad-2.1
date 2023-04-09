@@ -15,7 +15,8 @@ class solicitantesModel {
         return new Promise((resolve, reject) => {
             connection.query('SELECT * FROM `solicitantes` WHERE CI = ?' , [parametro] , function (error, results, fields) {
                 if (error) throw error;
-                let json = JSON.stringify(results)
+                let json = JSON.stringify(results);
+                console.log(results)
                 resolve (json);
             })
         })

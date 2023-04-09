@@ -10,6 +10,30 @@ class trabajosModel {
             })
         })
     }
+
+    //modelo listar por ID
+    listarID(parametro) {
+        return new Promise((resolve, reject) => {
+            connection.query('SELECT * FROM `trabajos` WHERE id = ?' , [parametro] , function (error, results, fields) {
+                if (error) throw error;
+                let json = JSON.stringify(results)
+                resolve (json);
+            })
+        })
+    }
+
+    //eliminar por ID
+    eliminar(parametro) {
+        console.log('estoy eliminando')
+        return new Promise((resolve, reject) => {
+            console.log(`vamos a eliminar ${parametro}`)
+            connection.query('DELETE FROM `trabajos` WHERE id = ?' , [parametro] , function (error, results, fields) {
+                if (error) throw error;
+                resolve();
+            })
+        })
+    }
+
     agregar(parametro){
         console.log("llegamos a modulos klk")
         return new Promise((resolve, reject) => {

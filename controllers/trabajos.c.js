@@ -13,6 +13,57 @@ class trabajosControllers {
             })
         })
     }
+    //LISTAR POR id
+    listarID(parametro) {
+      return new Promise((resolve, reject) => {
+        trabajosModel.listarID(parametro)
+        .then((json) => {
+          let resultado = JSON.parse(json)
+          if (resultado.length == 0) {
+             return resolve(`No hay trabajos registrados con esta id: ${parametro}`)
+          };
+          resolve(resultado)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+      })
+    }
+
+    //eliminar
+    eliminar(parametro) {
+      return new Promise((resolve, reject) => {
+        trabajosModel.listarID(parametro)
+        .then((json) => {
+          let resultado = JSON.parse(json)
+          if (resultado.length == 0) {
+             console.log('No existe el trabajo');
+             return resolve(`No hay trabajos registrados con esa id: ${parametro}`)
+          };
+  
+          const eliminado = new Promise((resolve, reject) => {
+            trabajosModel.eliminar(parametro)
+            .then(() => {
+              console.log('ya se elimino estamos en controlador')
+              resolve(`se ha eliminado el trabajo con el id: ${parametro}`);
+            })
+            .catch((err) => {
+              reject(err);
+            })
+          })
+          
+          console.log('nos vamos a rutas');
+          resolve(eliminado);
+        })
+        .catch((err) => {
+          reject(err)
+        })
+      })
+    }
+
+
+
+    //AGREGAR UN NUEVO TRABAJO
     agregar(parametro){
         console.log(parametro);
         return new Promise((resolve, reject) => {

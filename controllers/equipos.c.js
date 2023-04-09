@@ -62,6 +62,8 @@ class equipoControllers {
       })
     })
   }
+
+  
 }
 
 module.exports = new equipoControllers();

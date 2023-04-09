@@ -5,6 +5,9 @@ class personalControllers {
     return new Promise((resolve, reject) => {
       personalModel.listar()
       .then((resultado) => {
+        if (resultado.length == 0) {
+          return resolve('Por ahora no hay personal registrado :)')
+        }
         resolve(resultado)
       })
       .catch((err) => {

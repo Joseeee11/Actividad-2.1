@@ -5,6 +5,9 @@ class reserva_equiposControllers {
     return new Promise((resolve, reject) => {
       reserva_equiposModel.listar()
       .then((resultado) => {
+        if (resultado.length == 0) {
+          return resolve('Por ahora no hay reservas registradas :)')
+        }
         resolve(resultado)
       })
       .catch((err) => {

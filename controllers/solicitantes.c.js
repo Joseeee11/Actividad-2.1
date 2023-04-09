@@ -6,6 +6,9 @@ class solicitantesControllers {
     return new Promise((resolve, reject) => {
       solicitantesModel.listar()
       .then((resultado) =>{
+        if (resultado.length == 0) {
+          return resolve('Por ahora no hay solicitantes registrados :)')
+        }
         resolve (resultado);
       })
       .catch((err) =>{

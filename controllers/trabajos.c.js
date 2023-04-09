@@ -6,6 +6,9 @@ class trabajosControllers {
             console.log ('LISTO  YA ESTAMOS EN CONTROLADOR');
             trabajosModel.listar()
             .then ((resultado) => {
+                if (resultado.length == 0) {
+                  return resolve('Por ahora no hay trabajos registrados :)')
+                }
                 resolve (resultado)
             })
             .catch((err) => {

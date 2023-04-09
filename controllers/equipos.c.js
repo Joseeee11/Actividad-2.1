@@ -6,6 +6,9 @@ class equipoControllers {
       console.log('listando ;3');
       equiposModel.listar()
       .then((resultado) => {
+        if (resultado.length == 0) {
+          return resolve('Por ahora no hay equipos registrados :)')
+        }
         resolve (resultado)
       })
       .catch((err) => { 
@@ -63,7 +66,7 @@ class equipoControllers {
     })
   }
 
-  
+
 }
 
 module.exports = new equipoControllers();

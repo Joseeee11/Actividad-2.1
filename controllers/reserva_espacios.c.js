@@ -5,6 +5,9 @@ class reserva_espaciosControllers {
     return new Promise((resolve, reject) => {
       reserva_espaciosModel.listar()
       .then((resultado) => {
+        if (resultado.length == 0) {
+          return resolve('Por ahora no hay reservas registradas :)')
+        }
         resolve(resultado)
       })
       .catch((err) => {

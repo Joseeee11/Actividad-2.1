@@ -7,6 +7,9 @@ const espaciosModel = require ('../models/espacios.m')
       console.log ('LISTO  YA ESTAMOS EN CONTROLADOR');
       espaciosModel.listar()
       .then ((resultado) => {
+        if (resultado.length == 0) {
+          return resolve('Por ahora no hay espacios registrados :)')
+        }
         resolve (resultado)
       })
       .catch((err) => {

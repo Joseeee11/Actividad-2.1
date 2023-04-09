@@ -148,7 +148,7 @@ class trabajosControllers {
         trabajosModel.revisarAgregar()
         .then((disponible)=>{
           console.log("entramos a then");
-          resolve(`Las reservas de espacio disponibles son: ${disponible}`)          
+          resolve(`Las reservas de equipos faltantes por un trabajo son: ${disponible}`)          
         })
         .catch((err)=>{
           console.log("entramos a catch");

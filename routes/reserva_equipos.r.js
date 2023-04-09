@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 
 
 //ELIMINAR
-router.delete('/:id', function(req, res, next) {
+router.delete('/eliminar/:id', function(req, res, next) {
   const borrar = req.params.id
   console.log(borrar); //id que vamos a borrar
 

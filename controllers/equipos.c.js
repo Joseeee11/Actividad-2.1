@@ -80,7 +80,7 @@ class equipoControllers {
         };
         console.log('hola')
         console.log(equipoModificar.estatus)
-        if (equipoModificar.estatus != "Disponible" || equipoModificar.estatus != "Ocupado" || equipoModificar.estatus != "Mantenimiento") {
+        if (equipoModificar.estatus != "Disponible" && equipoModificar.estatus != "Ocupado" && equipoModificar.estatus != "Mantenimiento") {
           return resolve(`El estatus del equipo solo puede estar en: Disponible, Ocupado, Mantenimiento`);
         }
 

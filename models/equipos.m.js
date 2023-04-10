@@ -27,7 +27,7 @@ class equiposModel {
         console.log("llegamos a modulos klk")
         return new Promise((resolve, reject) => {
             connection.query("INSERT INTO `equipos` set ?", [parametro], function (error, results, fields) {
-                if (error) throw error;
+                if (error) reject (error);
                 resolve("Se agrego correctamente");
             })
 

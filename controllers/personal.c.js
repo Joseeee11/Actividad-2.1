@@ -35,6 +35,25 @@ class personalControllers {
     })
   }
 
+    //agregar un personal
+    agregar(parametro){
+      console.log(parametro);
+      return new Promise((resolve, reject) => {
+        // el if compara lo que se debe tener para agregar 
+        if (!parametro || !parametro.usuario_unico || !parametro.nombre || !parametro.CI || !parametro.cargo || !parametro.especialidad || !parametro.contrasena) {
+          reject("Se debe ingresar correctamente los parametros")
+        }
+        personalModel.agregar(parametro)
+        .then((resultado) =>  {
+          resolve(resultado)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+      })
+    }
+
+
   //eliminar personal
   eliminar(parametro) {
     return new Promise((resolve, reject) => {

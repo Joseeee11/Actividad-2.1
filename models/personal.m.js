@@ -23,6 +23,18 @@ class personalModel{
         })
     }
 
+    //agregar personal
+    agregar(parametro){
+        console.log("llegamos a modulos klk")
+        return new Promise((resolve, reject) => {
+            connection.query("INSERT INTO `personal` set ?", [parametro], function (error, results, fields) {
+                if (error) reject (error);
+                resolve("Se agrego correctamente");
+            })
+
+        })
+    }
+
     //eliminar
     eliminar(parametro){
         console.log('estoy eliminando')

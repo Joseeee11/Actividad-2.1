@@ -67,6 +67,21 @@ router.get('/fechaFinal/:fecha', function(req, res, next) {
   })
 }); 
 
+//listar por rango de fechas
+router.get('/fechasRango/:fechaI/:fechaF', function(req, res, next) {
+  let fechaI = req.params.fechaI
+  let fechaF = req.params.fechaF
+
+  console.log(`buscar trabajo que se necuentre entre ${fechaI} a ${fechaF}`) 
+  trabajosControllers.listarFechaRango(fechaI, fechaF)
+  .then((resultado) => {
+    res.send(resultado)
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+})  // inicial 2023-04-10 / final 2023-04-19
+
 //eliminar trabajos
 router.delete('/eliminar/:id', function(req, res, next) {
   const parametro = req.params.id

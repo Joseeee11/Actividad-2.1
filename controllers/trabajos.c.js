@@ -90,6 +90,23 @@ class trabajosControllers {
       })
     }
 
+    //listar por rango de fechas
+    listarFechaRango(fechaI, fechaF) {
+      return new Promise((resolve, reject) => {
+        trabajosModel.listarFechaRango(fechaI, fechaF)
+        .then((resultado) => {
+          if (resultado.length == 0) {
+            return resolve(`Por ahora no hay trabajos registrados para las fechas del ${fechaI} al ${fechaF}`)
+          }
+          resolve(resultado)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+      })
+    }
+
+
     //eliminar
     eliminar(parametro) {
       return new Promise((resolve, reject) => {
@@ -148,7 +165,7 @@ class trabajosControllers {
         trabajosModel.revisarAgregar()
         .then((disponible)=>{
           console.log("entramos a then");
-          resolve(`Las reservas de equipos faltantes por un trabajo son: ${disponible}`)          
+          resolve(`Las trabajos de equipos faltantes por un trabajo son: ${disponible}`)          
         })
         .catch((err)=>{
           console.log("entramos a catch");

@@ -81,6 +81,18 @@ class trabajosModel {
             })
         })
     }
+
+    //listar por rango de fechas
+    listarFechaRango(fechaI, fechaF) {
+        return new Promise((resolve, reject) => {
+            connection.query('SELECT * FROM `trabajos` WHERE fecha_inicio >= ? AND fecha_inicio <= ?' , [fechaI, fechaF] , function (error, results, fields) {
+                if (error) reject (error);
+                resolve (results);
+            })
+        })
+    }
+
+
     revisarAgregar(){
         console.log("llegamos a modelo a");
         return new Promise((resolve, reject) => {

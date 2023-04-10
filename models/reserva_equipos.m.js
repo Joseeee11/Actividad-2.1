@@ -44,6 +44,19 @@ class reserva_equiposModel {
         })
     }
 
+    //agregando
+    agregar(parametro){
+        console.log("llegaaaaa");
+        console.log("estoy agregando")
+        return new Promise((resolve, reject) => {
+            console.log(parametro);
+            connection.query("INSERT INTO `reservas_equipos` set ?", [parametro], function (error, results, fields) {
+            if (error) reject (error);
+                resolve("Se agrego correctamente");
+            })
+        })
+    }
+
     //eliminar
     eliminar(id) {
         return new Promise((resolve, reject) => {

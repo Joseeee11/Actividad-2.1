@@ -114,7 +114,7 @@ class reserva_espaciosControllers {
       })
       .catch((error) => {
         console.log(error);
-        reject()
+        reject(error)
       })
     })
 }

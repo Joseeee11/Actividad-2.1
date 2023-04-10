@@ -69,6 +69,26 @@ class reserva_equiposControllers {
     })
   }
 
+  //agregar una reserva de equipo
+  agregar(parametro){
+    console.log(parametro);
+    return new Promise((resolve, reject) => {
+      // el if compara lo que se debe tener para agregar 
+      if (!parametro || !parametro.solicitante || !parametro.hora_inicio || !parametro.hora_fin || !parametro.personal_solici || !parametro.fecha || !parametro.motivo || !parametro.equipo_solici) {
+        console.log("llega??");
+        reject("Se debe ingresar correctamente los parametros")
+      }
+      reserva_equiposModel.agregar(parametro)
+      .then((resultado) =>  {
+        resolve(resultado)
+      })
+      .catch((error) => {
+        console.log(error);
+        reject(error)
+      })
+    })
+}
+
   //ELIMINAR
   eliminar(id) {
     return new Promise((resolve, reject) => {

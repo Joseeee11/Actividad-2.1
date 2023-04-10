@@ -57,6 +57,22 @@ router.get('/fechasRango/:fechaI/:fechaF', function(req, res, next) {
   })
 })    //PROBAR CON /fechasRango/2023-02-02/2023-12-12
 
+//agregar equipos
+router.post('/agregar', function(req, res, next) {
+  const {id, solicitante , hora_inicio, hora_fin, personal_solici, fecha, motivo, equipo_solici} = req.body
+  const parametro = { id, solicitante, hora_inicio , hora_fin, personal_solici, fecha, motivo, equipo_solici}
+  parametro.id=null
+  reserva_equiposControllers.agregar(parametro)
+  .then((resultado) => {
+    console.log("se agrego correctamente :)")
+    res.send(resultado);
+  })
+  .catch((err) => {
+    res.send(err)
+  })
+});
+
+
 //ELIMINAR
 router.delete('/eliminar/:id', function(req, res, next) {
   const id = req.params.id

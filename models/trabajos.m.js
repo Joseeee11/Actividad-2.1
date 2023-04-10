@@ -34,6 +34,28 @@ class trabajosModel {
         })
     }
 
+    //listar por una fecha en especifico inicial del trabajo
+    listarFechaI(parametro) {
+        return new Promise((resolve, reject) => {
+            connection.query('SELECT * FROM `trabajos` WHERE fecha_inicio = ?' , [parametro] , function (error, results, fields) {
+                if (error) throw error;
+                let json = JSON.stringify(results)
+                resolve (json);
+            })
+        })
+    }
+
+    //listar por una fecha en especifico final del trabajo
+    listarFechaF(parametro) {
+        return new Promise((resolve, reject) => {
+            connection.query('SELECT * FROM `trabajos` WHERE fecha_fin = ?' , [parametro] , function (error, results, fields) {
+                if (error) throw error;
+                let json = JSON.stringify(results)
+                resolve (json);
+            })
+        })
+    }
+
     //eliminar por ID
     eliminar(parametro) {
         console.log('estoy eliminando')
@@ -46,8 +68,9 @@ class trabajosModel {
         })
     }
 
+    //agregando
     agregar(parametro){
-        console.log("llegamos a modulos klk")
+        console.log("estoy agregando")
         return new Promise((resolve, reject) => {
             console.log(parametro);
             connection.query("INSERT INTO `trabajos` set ?", [parametro], function (error, results, fields) {

@@ -23,7 +23,7 @@ class reserva_espaciosModel {
         })
     }
 
-    //listar por una fecha en especifico
+    //listar por una fecha en especifico 
     listarFecha(parametro) {
         return new Promise((resolve, reject) => {
             connection.query('SELECT * FROM `reservas_espacios` WHERE fecha = ?' , [parametro] , function (error, results, fields) {

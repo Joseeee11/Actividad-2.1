@@ -12,8 +12,20 @@ class espaciosModel{
             }) 
         })
     } 
+    //agregar espacios
+    agregar(parametro){
+        console.log("llegamos a modulos klk")
+        return new Promise((resolve, reject) => {
+            connection.query("INSERT INTO `espacios` set ?", [parametro], function (error, results, fields) {
+                if (error) reject (error);
+                resolve("Se agrego correctamente");
+            })
 
+        })
+    }
 }
+
+
 
 
 module.exports = new espaciosModel();

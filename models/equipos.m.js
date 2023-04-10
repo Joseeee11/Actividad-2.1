@@ -22,6 +22,19 @@ class equiposModel {
         })
     }
 
+    //agregar equipos
+    agregar(parametro){
+        console.log("llegamos a modulos klk")
+        return new Promise((resolve, reject) => {
+            connection.query("INSERT INTO `equipos` set ?", [parametro], function (error, results, fields) {
+                if (error) throw error;
+                resolve("Se agrego correctamente");
+            })
+
+        })
+    }
+
+
     //eliminar por ID
     eliminar(parametro) {
         console.log('estoy eliminando')

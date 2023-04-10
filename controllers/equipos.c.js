@@ -36,6 +36,27 @@ class equipoControllers {
     })
   }
 
+    //agregar un equipo
+    agregar(parametro){
+      console.log(parametro);
+      return new Promise((resolve, reject) => {
+        // el if compara lo que se debe tener para agregar 
+        if (!parametro || !parametro.nombre || !parametro.serial || !parametro.descripcion || !parametro.fecha_adquisicion || !parametro.estatus) {
+          reject("Se debe ingresar correctamente los parametros")
+        }
+        if (parametro.estatus != "Disponible" && parametro.estatus != "Ocupado" && parametro.estatus != "Mantenimiento") {
+          resolve(`El estatus del equipo solo puede estar en: Disponible, Ocupado, Mantenimiento`);
+        }
+        equiposModel.agregar(parametro)
+        .then((resultado) =>  {
+          resolve(resultado)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+      })
+    }
+
 
   //eliminar equipos
   eliminar(parametro) {

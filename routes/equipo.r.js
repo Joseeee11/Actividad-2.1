@@ -28,6 +28,22 @@ router.get('/:id', function(req, res, next) {
   })
 });
 
+// post
+router.post('/agregar', function(req, res, next) {
+  const {id, nombre, serial, descripcion, fecha_adquisicion, estatus} = req.body
+  const parametro = { id,nombre, serial, descripcion, fecha_adquisicion, estatus}
+  parametro.id=null
+  equipoControllers.agregar(parametro)
+  .then((resultado) => {
+    console.log("se agrego correctamente :)")
+    res.send(resultado);
+  })
+  .catch((err) => {
+    console.log("error")
+    res.send(err)
+  })
+});
+
 
 //eliminar equipos
 router.delete('/eliminar/:id', function(req, res, next) {

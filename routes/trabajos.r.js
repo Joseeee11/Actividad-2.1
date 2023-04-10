@@ -66,7 +66,7 @@ router.post('/agregar', function(req, res, next) {
     res.send(resultado);
   })
   .catch((err) => {
-    console.log("errorrrrrrr")
+    console.log("error")
     res.send(err)
   })
 });

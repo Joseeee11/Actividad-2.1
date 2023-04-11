@@ -41,7 +41,7 @@ class personalControllers {
       return new Promise((resolve, reject) => {
         // el if compara lo que se debe tener para agregar 
         if (!parametro || !parametro.usuario_unico || !parametro.nombre || !parametro.CI || !parametro.cargo || !parametro.especialidad || !parametro.contrasena) {
-          reject("Se debe ingresar correctamente los parametros")
+          return reject("Se debe ingresar correctamente los parametros")
         }
         personalModel.agregar(parametro)
         .then((resultado) =>  {

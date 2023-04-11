@@ -146,7 +146,7 @@ class trabajosControllers {
         return new Promise((resolve, reject) => {
           // el if compara lo que se debe tener para agregar 
           if (!parametro || !parametro.personal_solici || !parametro.reserva_solici || !parametro.equipos_solici || !parametro.fecha_inicio || !parametro.fecha_fin || !parametro.descripcion) {
-          reject("Se debe ingresar correctamente los parametros")
+            return reject("Se debe ingresar correctamente los parametros")
           }
           trabajosModel.agregar(parametro)
           .then((resultado) =>  {

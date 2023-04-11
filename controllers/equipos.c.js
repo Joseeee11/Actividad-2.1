@@ -42,11 +42,11 @@ class equipoControllers {
     return new Promise((resolve, reject) => { //declaramos promesa
       //Comparamos los datos que se debe tener para agregar correctamente
       if (!parametro || !parametro.nombre || !parametro.serial || !parametro.descripcion || !parametro.fecha_adquisicion || !parametro.estatus) {
-        reject("Se debe ingresar correctamente los parametros"); //avisamos al usuario que (leer reject)
+        return reject("Se debe ingresar correctamente los parametros"); //avisamos al usuario que (leer reject)
       }
       //Tambien comparamos que la propiedad "estatus" solo contenga algunos de estos, de lo contrario si no los contiene:
       if (parametro.estatus != "Disponible" && parametro.estatus != "Ocupado" && parametro.estatus != "Mantenimiento") {
-        resolve(`El estatus del equipo solo puede estar en: Disponible, Ocupado, Mantenimiento`); //se le avisara al usuario que el estatus (leer reject)
+        return resolve(`El estatus del equipo solo puede estar en: Disponible, Ocupado, Mantenimiento`); //se le avisara al usuario que el estatus (leer reject)
       }
       equiposModel.agregar(parametro) //Llamamos a la funcion agregar de Modelos junto con la variable parametro
       .then((resultado) =>  {

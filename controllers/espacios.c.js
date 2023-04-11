@@ -40,7 +40,7 @@ const espaciosModel = require ('../models/espacios.m')
   modificar(parametro, espacioModificar) {
     return new Promise((resolve, reject) => {
       if (!espacioModificar || !espacioModificar.nombre || !espacioModificar.direccion || !espacioModificar.descripcion || !espacioModificar.estatus) {
-        reject(`La informacion ingresada no es la correcta. Es necesaria la informacion: NOMBRE, DIRECCION, DESCRIPCION, y ESTATUS`);
+        return reject(`La informacion ingresada no es la correcta. Es necesaria la informacion: NOMBRE, DIRECCION, DESCRIPCION, y ESTATUS`);
       }
       espaciosModel.listarID(parametro)
       .then((json) => {
@@ -72,10 +72,10 @@ const espaciosModel = require ('../models/espacios.m')
     return new Promise((resolve, reject) => {
       // el if compara lo que se debe tener para agregar 
       if (!parametro || !parametro.nombre || !parametro.direccion || !parametro.descripcion || !parametro.estatus) {
-      reject("Se debe ingresar correctamente los parametros")
+        return reject("Se debe ingresar correctamente los parametros")
       }
       if (parametro.estatus != "Disponible" && parametro.estatus != "Ocupado" && parametro.estatus != "Mantenimiento") {
-        resolve(`El estatus del equipo solo puede estar en: Disponible, Ocupado, Mantenimiento`);
+        return resolve(`El estatus del equipo solo puede estar en: Disponible, Ocupado, Mantenimiento`);
       }
       espaciosModel.agregar(parametro)
       .then((resultado) =>  {

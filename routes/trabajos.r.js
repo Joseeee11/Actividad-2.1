@@ -71,7 +71,6 @@ router.get('/fechaFinal/:fecha', function(req, res, next) {
 router.get('/fechasRango/:fechaI/:fechaF', function(req, res, next) {
   let fechaI = req.params.fechaI
   let fechaF = req.params.fechaF
-
   console.log(`buscar trabajo que se necuentre entre ${fechaI} a ${fechaF}`) 
   trabajosControllers.listarFechaRango(fechaI, fechaF)
   .then((resultado) => {
@@ -80,7 +79,7 @@ router.get('/fechasRango/:fechaI/:fechaF', function(req, res, next) {
   .catch((err) => {
     res.send(err)
   })
-})  // inicial 2023-04-10 / final 2023-04-19
+})  //PROBAR con /fechasRango/2023-04-10/2023-04-19 
 
 //eliminar trabajos
 router.delete('/eliminar/:id', function(req, res, next) {
@@ -94,7 +93,7 @@ router.delete('/eliminar/:id', function(req, res, next) {
   .catch((err) => {
     res.send(err)
   })
-})
+}) //PROBAR CON /eliminar/4
 
 //agregar trabajos
 router.post('/agregar', function(req, res, next) {

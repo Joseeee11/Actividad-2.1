@@ -72,7 +72,7 @@ router.delete('/eliminar/:id', function(req, res, next) {
   .catch((err) => {
     res.send(err)
   })
-})
+})  //PROBAR CON /eliminar/2
 
 //agregar espacios
 router.post('/agregar', function(req, res, next) {

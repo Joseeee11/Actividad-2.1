@@ -85,7 +85,7 @@ router.delete('/eliminar/:id', function(req, res, next) {
     res.send(err)
   })
 
-})
+}) //PROBAR CON /eliminar/4
 
 
 module.exports = router;

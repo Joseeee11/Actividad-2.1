@@ -1,10 +1,16 @@
 var express = require('express');
 var router = express.Router();
-
+const checkAutenticacion = require('../midelword/autenticacion');
 var personalControllers = require("../controllers/personal.c.js")
 
 //listar
-router.get('/', function(req, res, next) {
+router.get('/', 
+function(req, res, next){
+  roles = ["admin"];
+  checkAutenticacion(req, res, next, roles);
+  },  
+
+  function(req, res, next) {
   personalControllers.listar()
   .then((resultado)=>{
     res.send(resultado)

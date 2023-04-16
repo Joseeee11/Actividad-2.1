@@ -42,7 +42,7 @@ class solicitantesControllers {
     console.log(parametro);
     return new Promise((resolve, reject) => {
       // el if compara lo que se debe tener para agregar 
-      if (!parametro || !parametro.nombre_apellido || !parametro.CI || !parametro.fecha_nacimiento || !parametro.direccion || !parametro.contrasena || !parametro.nro_telefono) {
+      if (!parametro || !parametro.usuario || !parametro.nombre_apellido || !parametro.CI || !parametro.fecha_nacimiento || !parametro.direccion || !parametro.contrasena || !parametro.nro_telefono) {
       return reject("Se debe ingresar correctamente los parametros")
       }
       solicitantesModel.agregar(parametro)

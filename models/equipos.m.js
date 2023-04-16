@@ -1,14 +1,16 @@
-const connection = require('./conexion')
+const connection = require('./conexion');
+// Llamamos a la funcion empresa
+const { connection_2, Empresa } = require('../empresa/query_empresa')
 
 class equiposModel {
     //mostrar general
     listar(){
-        return new Promise( (resolve, reject) => {
+        return new Promise( async (resolve, reject) => {
             //La DB seleccionara todos los equipos
-            connection.query('SELECT * FROM `equipos`', function (error, results, fields) {
-                if (error) throw error;
-                resolve (results);
-            });
+            let sql_equipos = `SELECT * FROM equipos`
+            const result = await Empresa(sql_equipos)
+
+            resolve (result)
         })
     }
 

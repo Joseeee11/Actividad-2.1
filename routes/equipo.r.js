@@ -1,19 +1,25 @@
 var express = require('express'); 
 var router = express.Router();
-
+const checkAutenticacion = require('../midelword/autenticacion');
 //importar controladores OJO
 var equipoControllers = require("../controllers/equipos.c.js")
 
 
 
 //LISTAR metodo GET
-router.get('/', function(req, res, next) {
+router.get('/', 
+  function(req, res, next){
+  roles = ["admin"];
+  checkAutenticacion(req, res, next, roles);
+  },  
+
+  function(req, res, next) {
   equipoControllers.listar()  //llamamos a nuestra funcion listar() de la clase equipoControllers, en la cual se incluye una promesa
   .then ((resultado) => {  //Cuando nuestra promesa se jecuta conrrectamente, al usuario le retornaremos o le mostramos lo que contiene la variable resultado, la cual se explica a más detalle en Controladores
-    res.send(resultado); //mostramos al usuario
+    res.status(200).json({ status: 200, data: resultado}); //mostramos al usuario
   })
   .catch ((err) => {  //Por el contrario cuando nuestra promesa al ejecutarse ocurre un error le avisamos al usuario del mismo
-    res.send(err) //mostramos al usuario el error
+    res.status(404).json({ status: 404, menssage: "Existe un error", error: err}) //mostramos al usuario el error
   })
 });
 //listar por Id GET

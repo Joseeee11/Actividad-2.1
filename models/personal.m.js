@@ -1,4 +1,6 @@
 const connection = require('./conexion');
+const bcryptjs = require('bcryptjs');
+const { connection_2, Empresa } = require('../empresa/query_empresa')
 
 class personalModel{
     //listar general
@@ -26,7 +28,14 @@ class personalModel{
     //agregar personal
     agregar(parametro){
         console.log("llegamos a modulos klk")
-        return new Promise((resolve, reject) => {
+        return new Promise( async (resolve, reject) => {
+
+            var passwordHash = await bcryptjs.hash(parametro.contrasena, 8);
+            parametro.contrasena = passwordHash
+
+            let sql_usuarios = `INSERT INTO usuarios (usuario, contrasena, rol) VALUES ("${parametro.usuario_unico}", "${parametro.contrasena}", "admin")`
+            const result = await Empresa(sql_usuarios)
+
             connection.query("INSERT INTO `personal` set ?", [parametro], function (error, results, fields) {
                 if (error) reject (error);
                 resolve("Se agrego correctamente");

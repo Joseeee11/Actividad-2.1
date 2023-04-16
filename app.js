@@ -12,6 +12,7 @@ var personalRouter = require('./routes/personal.r');
 var trabajosRouter = require('./routes/trabajos.r');
 var reserva_espaciosRouter = require('./routes/reserva_espacios.r');
 var reserva_equiposRouter = require('./routes/reserva_equipos.r');
+var usuariosRouter = require('./routes/usuarios.r');
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use('/personal', personalRouter);
 app.use('/trabajos', trabajosRouter);
 app.use('/reserva_espacios', reserva_espaciosRouter);
 app.use('/reserva_equipos', reserva_equiposRouter);
+app.use('/usuarios', usuariosRouter);
 
 
 // catch 404 and forward to error handler

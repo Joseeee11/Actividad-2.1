@@ -1,4 +1,8 @@
 const connection = require('./conexion');
+// Llamamos a la funcion empresa
+const { connection_2, Empresa } = require('../empresa/query_empresa');
+const { json } = require('express');
+const { stringify } = require('uuid');
 
 class reserva_equiposModel {
     //listar en general
@@ -48,12 +52,47 @@ class reserva_equiposModel {
     agregar(parametro){
         console.log("llegaaaaa");
         console.log("estoy agregando")
-        return new Promise((resolve, reject) => {
-            console.log(parametro);
-            connection.query("INSERT INTO `reservas_equipos` set ?", [parametro], function (error, results, fields) {
-            if (error) reject (error);
-                resolve("Se agrego correctamente");
-            })
+        return new Promise(async(resolve, reject) => {
+
+            let verificar = ""
+
+            let sql_equipos = `SELECT * FROM equipos WHERE id = ${parametro.equipo_solici}`
+            const result_equipo = await Empresa(sql_equipos)
+
+            if (result_equipo[0].estatus == "Mantenimiento") {
+                console.log("estoy en mantenimiento")
+                resolve("El equipo esta en Mantenimiento")
+                verificar = "Lleno"
+            }
+
+            if (result_equipo[0].estatus == "Ocupado") {
+                console.log("estoy en ocupacion")
+
+                let sql_comprobacion = `SELECT * FROM reservas_equipos WHERE equipo_solici = ${parametro.equipo_solici}`
+                const result_comprobado = await Empresa(sql_comprobacion)
+
+                console.log(parametro.fecha + "T04:00:00.000Z");
+                
+                
+                result_comprobado.forEach(reservas => {
+                    if (JSON.stringify(reservas.fecha) === JSON.stringify(`${parametro.fecha}T04:00:00.000Z`)) {
+                        console.log("a")
+                        resolve("Ya el equipo esta ocupado para la fecha")
+                        verificar = "Lleno"
+                    }
+                });
+            }
+
+            if (verificar === "") {
+                let sql_cambio = `UPDATE equipos set estatus = "Ocupado" WHERE id = ${Number(parametro.equipo_solici)}`
+                const result_cambio = await Empresa(sql_cambio)
+
+                console.log(parametro);
+                connection.query("INSERT INTO `reservas_equipos` set ?", [parametro], function (error, results, fields) {
+                if (error) reject (error);
+                    resolve("Se agrego correctamente");
+                })
+            }
         })
     }
 

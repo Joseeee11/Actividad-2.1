@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+const checkAutenticacion = require('../midelword/autenticacion');
 //importar controladores OJO, NO MODIFICAR
 var reserva_espaciosControllers = require("../controllers/reserva_espacios.c.js")
 

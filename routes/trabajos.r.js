@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+const checkAutenticacion = require('../midelword/autenticacion');
 //importar controladores 
 var trabajosControllers = require("../controllers/trabajos.c.js");
 
